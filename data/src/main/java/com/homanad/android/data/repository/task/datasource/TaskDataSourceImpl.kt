@@ -1,0 +1,26 @@
+package com.homanad.android.data.repository.task.datasource
+
+import com.homanad.android.data.db.dao.TaskDAO
+import com.homanad.android.data.mapper.toTask
+import com.homanad.android.data.mapper.toTaskEntity
+import com.homanad.android.domain.entity.Task
+import javax.inject.Inject
+
+class TaskDataSourceImpl @Inject constructor(private val taskDAO: TaskDAO) : TaskDataSource {
+
+    override suspend fun createTask(task: Task): Long {
+        return taskDAO.insert(task.toTaskEntity())
+    }
+
+    override suspend fun updateTask(task: Task): Int {
+        return taskDAO.update(task.toTaskEntity())
+    }
+
+    override suspend fun deleteTask(task: Task): Int {
+        return taskDAO.delete(task.toTaskEntity())
+    }
+
+    override suspend fun getTasks(): List<Task> {
+        return taskDAO.getTasks().map { it.toTask() }
+    }
+}
