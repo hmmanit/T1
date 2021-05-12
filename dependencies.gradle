@@ -86,6 +86,7 @@ ext {
     //dimensions
     auto_dimensions = files("presentation/libs/autodimensions-${auto_dimensions_version}.aar")
     android_common = files("presentation/libs/AndroidCommon-release.aar")
+    curved_bottom_navigation = files("presentation/libs/curved_bottom_navigation-debug.aar")
 
     play_core = "com.google.android.play:core:$play_core_version"
 
@@ -101,7 +102,7 @@ ext {
     activity_ktx = "androidx.activity:activity-ktx:$activity_ktx_version"
     fragment_ktx = "androidx.fragment:fragment-ktx:$fragment_ktx_version"
 
-    curved_bottom_navigation = "np.com.susanthapa:curved_bottom_navigation:0.6.5"
+//    curved_bottom_navigation = "np.com.susanthapa:curved_bottom_navigation:0.6.5"
 
     palette = "androidx.palette:palette:$palette_version"
 
