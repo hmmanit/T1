@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding = true
+    }
     sourceSets {
 //        main.java.srcDirs = ['src/main/kotlin']
         main.jniLibs.srcDirs = ['libs']
@@ -69,4 +72,11 @@ dependencies {
 
     implementation navigation_ktx
     implementation navigation_ui_ktx
+
+    //custom view
+    implementation curved_bottom_navigation
+
+    //aar
+    implementation android_common
+    implementation auto_dimensions
 }
