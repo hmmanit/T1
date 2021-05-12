@@ -8,7 +8,7 @@ import com.homanad.android.data.db.dao.TaskDAO
 import com.homanad.android.data.db.entity.BoardEntity
 import com.homanad.android.data.db.entity.TaskEntity
 
-@Database(entities = [BoardEntity::class, TaskEntity::class], version = 1)
+@Database(entities = [BoardEntity::class, TaskEntity::class], exportSchema = true, version = 1)
 abstract class TDatabase : RoomDatabase() {
     abstract val boardDAO: BoardDAO
     abstract val taskDAO: TaskDAO
