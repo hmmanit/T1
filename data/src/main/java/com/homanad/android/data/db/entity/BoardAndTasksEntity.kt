@@ -5,10 +5,10 @@ import androidx.room.Relation
 
 data class BoardAndTasksEntity(
     @Embedded
-    val boardEntity: BoardEntity,
+    val boardEntity: BoardEntity = BoardEntity(),
     @Relation(
         parentColumn = "id",
         entityColumn = "boardId"
     )
-    val taskEntities: List<TaskEntity>
+    val taskEntities: List<TaskEntity> = ArrayList()
 )

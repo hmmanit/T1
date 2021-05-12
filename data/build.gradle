@@ -56,4 +56,7 @@ dependencies {
 
     implementation rootProject.hilt
     kapt hilt_compiler
+
+    implementation moshi
+    kapt moshi_compiler
 }

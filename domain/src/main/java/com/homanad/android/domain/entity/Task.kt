@@ -1,16 +1,16 @@
 package com.homanad.android.domain.entity
 
 data class Task(
-    val id: Long,
-    val boardId: Long,
-    val title: String,
-    val description: String,
-    val priority: Int,
-    val themeColor: String,
-    val status: Int,
-    val startTime: Long,
-    val endTime: Long,
-    val images: List<String>//paths
+    val id: Long = -1,
+    val boardId: Long = -1,
+    val title: String = "",
+    val description: String = "",
+    val priority: Int = -1,
+    val themeColor: String = "",
+    val status: Int = -1,
+    val startTime: Long = -1,
+    val endTime: Long = -1,
+    val images: List<String> = ArrayList()
 )
 
 enum class Priority(point: Int) {
