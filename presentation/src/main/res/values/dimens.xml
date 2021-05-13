@@ -10,6 +10,7 @@
     <dimen name="defaultCornerRadius">@dimen/dimen_8adp</dimen>
     <dimen name="mediumCornerRadius">@dimen/dimen_12adp</dimen>
     <dimen name="largeCornerRadius">@dimen/dimen_16adp</dimen>
+    <dimen name="xLargeCornerRadius">@dimen/dimen_32adp</dimen>
 
     //dimensions
     <dimen name="homeTaskHeight">@dimen/dimen_180adp</dimen>

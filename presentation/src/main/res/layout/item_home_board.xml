@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/dimen_120adp"
     android:layout_height="match_parent"
-    app:cardBackgroundColor="#F8C1B0"
-    app:cardCornerRadius="@dimen/defaultCornerRadius">
+    app:cardBackgroundColor="#FC4D55"
+    app:cardCornerRadius="@dimen/largeCornerRadius">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
