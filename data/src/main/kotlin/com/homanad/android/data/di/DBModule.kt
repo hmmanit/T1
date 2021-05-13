@@ -44,4 +44,7 @@ object DBModule {
 
     @Provides
     fun provideTaskDAO(tDatabase: TDatabase) = tDatabase.taskDAO
+
+    @Provides
+    fun provideBoardAndTasksDAO(tDatabase: TDatabase) = tDatabase.boardAndTasksDAO
 }

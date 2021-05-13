@@ -10,8 +10,10 @@ import com.homanad.android.common.components.ui.BaseActivityWithBinding
 import com.homanad.android.common.components.ui.binding.contentView
 import com.homanad.android.t1.R
 import com.homanad.android.t1.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import np.com.susanthapa.curved_bottom_navigation.CbnMenuItem
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedListener {
 
 //    override val binding: ActivityMainBinding by contentView(R.layout.activity_main)

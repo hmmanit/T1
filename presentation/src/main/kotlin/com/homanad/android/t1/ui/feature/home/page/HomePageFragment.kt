@@ -5,16 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.t1.R
 import com.homanad.android.t1.databinding.FragmentHomePageBinding
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeTaskAdapter
 import com.homanad.android.t1.ui.feature.home.page.type.Page
+import com.homanad.android.t1.ui.feature.home.vm.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomePageFragment(private val pageId: Int) : BaseFragment() {
 
     private lateinit var binding: FragmentHomePageBinding
+
+    private val homeViewModel: HomeViewModel by viewModels()
 
     private val homeTaskAdapter by lazy {
         HomeTaskAdapter()
@@ -38,7 +44,7 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
     }
 
     override fun setupViewModel() {
-
+        homeViewModel.getAllBoardAndTasks()
     }
 
     override fun updateUI() {

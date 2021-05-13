@@ -81,4 +81,8 @@ dependencies {
     //aar
     implementation android_common
     implementation auto_dimensions
+
+    //room
+    implementation room //need this to compile Hilt DI
+//    kapt roomCompiler
 }
