@@ -35,16 +35,26 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/defaultMargin"
             android:layout_marginTop="@dimen/largeMargin"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/second_greeting"
             app:tabGravity="center"
             app:tabIndicator="@drawable/tab_home_indicator"
-            app:tabIndicatorAnimationMode="linear"
+            app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorGravity="stretch"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/defaultMargin"
+            app:layout_constraintBottom_toBottomOf="@id/tab_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tab_layout" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
@@ -54,12 +64,49 @@
             app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
         <com.google.android.material.card.MaterialCardView
-            app:shapeAppearance="@style/ShapeAppearance.TopRadiusCard"
-            app:cardBackgroundColor="#DDDDDD"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:cardBackgroundColor="#cce7ff"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_pager" />
+            app:layout_constraintTop_toBottomOf="@id/view_pager"
+            app:shapeAppearance="@style/ShapeAppearance.TopRadiusCard">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/rounded_view"
+                    android:layout_width="@dimen/dimen_50adp"
+                    android:layout_height="@dimen/dimen_3adp"
+                    android:background="@drawable/background_rounded"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/defaultMargin"
+                    android:layout_marginTop="@dimen/defaultMargin"
+                    android:text="Today's"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimen_18adp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rounded_view" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/smallMargin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_today" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
