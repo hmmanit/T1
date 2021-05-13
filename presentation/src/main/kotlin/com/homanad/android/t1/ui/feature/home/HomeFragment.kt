@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.homanad.android.common.components.ui.BaseFragment
-import com.homanad.android.common.extensions.resource.asDrawable
 import com.homanad.android.t1.R
 import com.homanad.android.t1.databinding.FragmentHomeBinding
-import com.homanad.android.t1.ui.feature.home.page.adapter.HomeSlidingAdapter
+import com.homanad.android.t1.ui.feature.home.page.adapter.HomeViewPagerAdapter
 
 class HomeFragment : BaseFragment() {
 
@@ -41,7 +40,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupTabs() {
-        val adapter = HomeSlidingAdapter()
+        val adapter = HomeViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = adapter
         TabLayoutMediator(
             binding.tabLayout,
