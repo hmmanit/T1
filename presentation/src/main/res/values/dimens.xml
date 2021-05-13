@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="smallMargin">@dimen/dimen_4adp</dimen>
+    <dimen name="defaultMargin">@dimen/dimen_8adp</dimen>
+    <dimen name="mediumMargin">@dimen/dimen_12adp</dimen>
+    <dimen name="largeMargin">@dimen/dimen_16adp</dimen>
+
+</resources>
