@@ -3,7 +3,9 @@ package com.homanad.android.data.repository.task.datasource
 import com.homanad.android.data.db.dao.TaskDAO
 import com.homanad.android.data.mapper.toTask
 import com.homanad.android.data.mapper.toTaskEntity
+import com.homanad.android.data.mapper.toTaskInBoard
 import com.homanad.android.domain.entity.Task
+import com.homanad.android.domain.entity.datamodel.TaskInBoard
 import javax.inject.Inject
 
 class TaskDataSourceImpl @Inject constructor(private val taskDAO: TaskDAO) : TaskDataSource {
@@ -22,5 +24,9 @@ class TaskDataSourceImpl @Inject constructor(private val taskDAO: TaskDAO) : Tas
 
     override suspend fun getTasks(): List<Task> {
         return taskDAO.getTasks().map { it.toTask() }
+    }
+
+    override suspend fun getAllTaskInBoardUseCase(): List<TaskInBoard> {
+        return taskDAO.getTaskInBoards().map { it.toTaskInBoard() }
     }
 }

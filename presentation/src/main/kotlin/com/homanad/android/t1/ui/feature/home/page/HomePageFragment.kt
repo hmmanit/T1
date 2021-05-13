@@ -45,6 +45,7 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
 
     override fun setupViewModel() {
         homeViewModel.getAllBoardAndTasks()
+        homeViewModel.getAllTaskInBoard()
     }
 
     override fun updateUI() {

@@ -2,6 +2,7 @@ package com.homanad.android.data.repository.task
 
 import com.homanad.android.data.repository.task.datasource.TaskDataSource
 import com.homanad.android.domain.entity.Task
+import com.homanad.android.domain.entity.datamodel.TaskInBoard
 import com.homanad.android.domain.repository.TaskRepository
 import javax.inject.Inject
 
@@ -22,6 +23,10 @@ class TaskRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getTasks(): List<Task> {
-        return getTasks()
+        return taskDataSource.getTasks()
+    }
+
+    override suspend fun getAllTaskInBoardUseCase(): List<TaskInBoard> {
+        return taskDataSource.getAllTaskInBoardUseCase()
     }
 }
