@@ -49,7 +49,8 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_180adp"
+            android:layout_height="@dimen/homeTaskHeight"
+            android:padding="@dimen/smallMargin"
             app:layout_constraintTop_toBottomOf="@id/tab_layout" />
 
         <com.google.android.material.card.MaterialCardView

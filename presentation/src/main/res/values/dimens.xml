@@ -11,4 +11,7 @@
     <dimen name="mediumCornerRadius">@dimen/dimen_12adp</dimen>
     <dimen name="largeCornerRadius">@dimen/dimen_16adp</dimen>
 
+    //dimensions
+    <dimen name="homeTaskHeight">@dimen/dimen_180adp</dimen>
+
 </resources>

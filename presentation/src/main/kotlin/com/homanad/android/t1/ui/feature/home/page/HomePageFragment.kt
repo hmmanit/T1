@@ -8,8 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.homanad.android.common.components.recyclerView.decoration.SpaceItemDecoration
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.t1.R
+import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
 import com.homanad.android.t1.databinding.FragmentHomePageBinding
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeTaskAdapter
 import com.homanad.android.t1.ui.feature.home.page.type.Page
@@ -71,6 +73,7 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
             Page.TASKS.id -> {
                 binding.recyclerSliding.run {
                     adapter = homeTaskAdapter
+                    addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
                     layoutManager =
                         LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 }

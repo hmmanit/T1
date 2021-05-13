@@ -42,6 +42,7 @@ class HomeFragment : BaseFragment() {
     private fun setupTabs() {
         val adapter = HomeViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = adapter
+        binding.viewPager.isUserInputEnabled = false
         TabLayoutMediator(
             binding.tabLayout,
             binding.viewPager
