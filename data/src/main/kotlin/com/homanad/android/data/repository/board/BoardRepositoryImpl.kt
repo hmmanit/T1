@@ -2,6 +2,7 @@ package com.homanad.android.data.repository.board
 
 import com.homanad.android.data.repository.board.datasource.BoardDataSource
 import com.homanad.android.domain.entity.Board
+import com.homanad.android.domain.entity.datamodel.BoardAndTasks
 import com.homanad.android.domain.repository.BoardRepository
 import javax.inject.Inject
 
@@ -14,14 +15,22 @@ class BoardRepositoryImpl @Inject constructor(
     }
 
     override suspend fun updateBoard(board: Board): Int {
-        return updateBoard(board)
+        return boardDataSource.updateBoard(board)
     }
 
     override suspend fun deleteBoard(board: Board): Int {
-        return deleteBoard(board)
+        return boardDataSource.deleteBoard(board)
     }
 
     override suspend fun getBoards(): List<Board> {
-        return getBoards()
+        return boardDataSource.getBoards()
+    }
+
+    override suspend fun getAllBoardAndTasks(): List<BoardAndTasks> {
+        return boardDataSource.getAllBoardAndTasks()
+    }
+
+    override suspend fun getBoardAndTasksById(boardId: Long): BoardAndTasks {
+        return boardDataSource.getBoardAndTasksById(boardId)
     }
 }

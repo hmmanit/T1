@@ -4,11 +4,10 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.homanad.android.domain.usecase.boardAndTasks.GetAllBoardAndTasksUseCase
-import com.homanad.android.domain.usecase.task.GetAllTaskInBoardUseCase
+import com.homanad.android.domain.usecase.taskInBoard.GetAllTaskInBoardUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.security.PrivateKey
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,7 +19,7 @@ class HomeViewModel @Inject constructor(
     fun getAllBoardAndTasks() {
         viewModelScope.launch(Dispatchers.IO) {
             getAllBoardAndTasksUseCase().forEach {
-//                Log.d("aaaaaaaaaaaaa", it.toString())
+                Log.d("aaaaaaaaaaaaa", it.toString())
             }
         }
     }
@@ -28,7 +27,7 @@ class HomeViewModel @Inject constructor(
     fun getAllTaskInBoard() {
         viewModelScope.launch {
             getAllTaskInBoardUseCase().forEach {
-                Log.d("aaaaaaaaaaaaa2", it.toString())
+//                Log.d("aaaaaaaaaaaaa2", it.toString())
             }
         }
     }

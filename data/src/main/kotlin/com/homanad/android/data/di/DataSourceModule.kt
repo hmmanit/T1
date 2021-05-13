@@ -2,8 +2,6 @@ package com.homanad.android.data.di
 
 import com.homanad.android.data.repository.board.datasource.BoardDataSource
 import com.homanad.android.data.repository.board.datasource.BoardDataSourceImpl
-import com.homanad.android.data.repository.boardAndTasks.datasource.BoardAndTasksDataSource
-import com.homanad.android.data.repository.boardAndTasks.datasource.BoardAndTasksDataSourceImpl
 import com.homanad.android.data.repository.task.datasource.TaskDataSource
 import com.homanad.android.data.repository.task.datasource.TaskDataSourceImpl
 import dagger.Binds
@@ -20,7 +18,4 @@ abstract class DataSourceModule {
 
     @Binds
     abstract fun bindTaskDataSource(taskDataSourceImpl: TaskDataSourceImpl): TaskDataSource
-
-    @Binds
-    abstract fun bindBoardAndTasksDataSource(boardAndTasksDataSourceImpl: BoardAndTasksDataSourceImpl): BoardAndTasksDataSource
 }
