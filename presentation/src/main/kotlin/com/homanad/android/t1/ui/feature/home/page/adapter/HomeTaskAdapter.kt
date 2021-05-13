@@ -8,14 +8,14 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.homanad.android.common.components.recyclerView.util.DiffCallback
-import com.homanad.android.domain.entity.Task
+import com.homanad.android.domain.entity.datamodel.TaskInBoard
 import com.homanad.android.t1.R
 
 class HomeTaskAdapter : RecyclerView.Adapter<HomeTaskAdapter.ItemHolder>() {
 
-    private var tasks = listOf<Task>()
+    private var tasks = listOf<TaskInBoard>()
 
-    fun setTasks(tasks: List<Task>) {
+    fun setTasks(tasks: List<TaskInBoard>) {
         val diffCallback = DiffCallback(this.tasks, tasks)
         this.tasks = tasks
         DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this)
@@ -29,7 +29,7 @@ class HomeTaskAdapter : RecyclerView.Adapter<HomeTaskAdapter.ItemHolder>() {
         private val textStartTime = view.findViewById<AppCompatTextView>(R.id.text_start_time)
         private val textEndTime = view.findViewById<AppCompatTextView>(R.id.text_end_time)
 
-        fun bind(task: Task) {
+        fun bind(task: TaskInBoard) {
             textTaskName.text = task.taskTitle
             textStartTime.text = task.startTime.toString()
             textEndTime.text = task.endTime.toString()

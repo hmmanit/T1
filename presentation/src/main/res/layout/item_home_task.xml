@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/dimen_120adp"
     android:layout_height="match_parent"
     app:cardCornerRadius="@dimen/defaultCornerRadius">
 
@@ -14,8 +14,10 @@
             android:layout_width="@dimen/dimen_20adp"
             android:layout_height="@dimen/dimen_20adp"
             android:layout_margin="@dimen/defaultMargin"
+            app:layout_constraintBottom_toTopOf="@id/text_task_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread_inside"
             app:srcCompat="@drawable/ic_home" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -39,15 +41,18 @@
             android:maxLines="2"
             android:text="Task 1"
             android:textSize="@dimen/dimen_18adp"
+            app:layout_constraintBottom_toTopOf="@id/text_start_time"
             app:layout_constraintStart_toStartOf="@id/icon"
             app:layout_constraintTop_toBottomOf="@id/icon" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_start_time"
             android:layout_width="0dp"
-            android:text="00:00 20-07-1996"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/largeMargin"
+            android:layout_marginBottom="@dimen/defaultMargin"
+            android:text="00:00 20-07-1996"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/text_end_time"
             app:layout_constraintStart_toStartOf="@id/icon"
             app:layout_constraintTop_toBottomOf="@id/text_task_name" />
@@ -55,13 +60,13 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_end_time"
             android:layout_width="0dp"
-            android:text="00:00 20-07-2021"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/defaultMargin"
-            android:layout_marginTop="@dimen/largeMargin"
+            android:text="00:00 20-07-2021"
+            app:layout_constraintBottom_toBottomOf="@id/text_start_time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/text_start_time"
-            app:layout_constraintTop_toBottomOf="@id/text_task_name" />
+            app:layout_constraintTop_toTopOf="@id/text_start_time" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
