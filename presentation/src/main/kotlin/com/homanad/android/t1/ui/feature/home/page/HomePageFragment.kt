@@ -68,8 +68,6 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
     }
 
     override fun setupViewModel() {
-        homeViewModel.getAllBoardAndTasks()
-        homeViewModel.getAllTaskInBoard()
     }
 
     override fun updateUI() {
@@ -85,6 +83,7 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
                     layoutManager =
                         LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 }
+                homeViewModel.getAllTaskInBoard()
             }
             Page.BOARDS.id -> {
                 binding.recyclerSliding.run {
@@ -93,6 +92,7 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
                     layoutManager =
                         LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 }
+                homeViewModel.getAllBoardAndTasks()
             }
             Page.OTHERS.id -> {
 
