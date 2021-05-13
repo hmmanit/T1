@@ -30,7 +30,7 @@ class HomeTaskAdapter : RecyclerView.Adapter<HomeTaskAdapter.ItemHolder>() {
         private val textEndTime = view.findViewById<AppCompatTextView>(R.id.text_end_time)
 
         fun bind(task: Task) {
-            textTaskName.text = task.title
+            textTaskName.text = task.taskTitle
             textStartTime.text = task.startTime.toString()
             textEndTime.text = task.endTime.toString()
         }

@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity
 data class BoardEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long = -1,
-    val title: String = "",
-    val description: String = "",
-    val imagePath: String = ""
+    val boardId: Long = -1,
+    val boardTitle: String = "",
+    val boardDescription: String = "",
+    val boardImage: String = ""
 )

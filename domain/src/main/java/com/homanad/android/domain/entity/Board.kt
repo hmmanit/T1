@@ -1,8 +1,8 @@
 package com.homanad.android.domain.entity
 
 data class Board(
-    val id: Long = -1,
-    val title: String = "",
-    val description: String = "",
-    val imagePath: String = ""
+    val boardId: Long = -1,
+    val boardTitle: String = "",
+    val boardDescription: String = "",
+    val boardImage: String = ""
 )

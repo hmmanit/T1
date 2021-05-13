@@ -1,7 +1,7 @@
 package com.homanad.android.data.repository.boardAndTasks
 
 import com.homanad.android.data.repository.boardAndTasks.datasource.BoardAndTasksDataSource
-import com.homanad.android.domain.entity.BoardAndTasks
+import com.homanad.android.domain.entity.datamodel.BoardAndTasks
 import com.homanad.android.domain.repository.BoardAndTaskRepository
 import javax.inject.Inject
 

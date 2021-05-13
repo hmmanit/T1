@@ -1,6 +1,6 @@
 package com.homanad.android.domain.repository
 
-import com.homanad.android.domain.entity.BoardAndTasks
+import com.homanad.android.domain.entity.datamodel.BoardAndTasks
 
 interface BoardAndTaskRepository {
     suspend fun getAllBoardAndTasks(): List<BoardAndTasks>

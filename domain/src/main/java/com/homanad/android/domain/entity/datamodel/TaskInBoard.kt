@@ -1,6 +1,6 @@
-package com.homanad.android.domain.entity
+package com.homanad.android.domain.entity.datamodel
 
-data class Task(
+data class TaskInBoard(
     val taskId: Long = -1,
     val boardId: Long = -1,
     val taskTitle: String = "",
@@ -10,5 +10,6 @@ data class Task(
     val status: Int = -1,
     val startTime: Long = -1,
     val endTime: Long = -1,
-    val images: List<String> = ArrayList()
+    val images: List<String> = ArrayList(),
+    val boardTitle: String = ""
 )

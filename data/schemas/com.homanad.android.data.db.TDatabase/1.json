@@ -2,40 +2,40 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "bf6a3fafb63b4926488571f6336e877d",
+    "identityHash": "1124fb6b0dda4d16279bc7bbb179d366",
     "entities": [
       {
         "tableName": "BoardEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `imagePath` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`boardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `boardTitle` TEXT NOT NULL, `boardDescription` TEXT NOT NULL, `boardImage` TEXT NOT NULL)",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
+            "fieldPath": "boardId",
+            "columnName": "boardId",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "title",
-            "columnName": "title",
+            "fieldPath": "boardTitle",
+            "columnName": "boardTitle",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "description",
-            "columnName": "description",
+            "fieldPath": "boardDescription",
+            "columnName": "boardDescription",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "imagePath",
-            "columnName": "imagePath",
+            "fieldPath": "boardImage",
+            "columnName": "boardImage",
             "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "boardId"
           ],
           "autoGenerate": true
         },
@@ -44,11 +44,11 @@
       },
       {
         "tableName": "TaskEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `boardId` INTEGER NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `priority` INTEGER NOT NULL, `themeColor` TEXT NOT NULL, `status` INTEGER NOT NULL, `startTime` INTEGER NOT NULL, `endTime` INTEGER NOT NULL, `images` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`taskId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `boardId` INTEGER NOT NULL, `taskTitle` TEXT NOT NULL, `taskDescription` TEXT NOT NULL, `priority` INTEGER NOT NULL, `themeColor` TEXT NOT NULL, `status` INTEGER NOT NULL, `startTime` INTEGER NOT NULL, `endTime` INTEGER NOT NULL, `images` TEXT NOT NULL)",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
+            "fieldPath": "taskId",
+            "columnName": "taskId",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -59,14 +59,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "title",
-            "columnName": "title",
+            "fieldPath": "taskTitle",
+            "columnName": "taskTitle",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "description",
-            "columnName": "description",
+            "fieldPath": "taskDescription",
+            "columnName": "taskDescription",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -109,7 +109,7 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "taskId"
           ],
           "autoGenerate": true
         },
@@ -120,7 +120,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'bf6a3fafb63b4926488571f6336e877d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1124fb6b0dda4d16279bc7bbb179d366')"
     ]
   }
 }

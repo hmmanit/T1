@@ -4,10 +4,10 @@ import com.homanad.android.data.db.entity.TaskEntity
 import com.homanad.android.domain.entity.Task
 
 fun Task.toTaskEntity() = TaskEntity(
-    id,
+    taskId,
     boardId,
-    title,
-    description,
+    taskTitle,
+    taskDescription,
     priority,
     themeColor,
     status,
@@ -17,10 +17,10 @@ fun Task.toTaskEntity() = TaskEntity(
 )
 
 fun TaskEntity.toTask() = Task(
-    id,
+    taskId,
     boardId,
-    title,
-    description,
+    taskTitle,
+    taskDescription,
     priority,
     themeColor,
     status,

@@ -2,7 +2,7 @@ package com.homanad.android.data.repository.boardAndTasks.datasource
 
 import com.homanad.android.data.db.dao.BoardAndTasksDAO
 import com.homanad.android.data.mapper.toBoardAndTasks
-import com.homanad.android.domain.entity.BoardAndTasks
+import com.homanad.android.domain.entity.datamodel.BoardAndTasks
 import javax.inject.Inject
 
 class BoardAndTasksDataSourceImpl @Inject constructor(

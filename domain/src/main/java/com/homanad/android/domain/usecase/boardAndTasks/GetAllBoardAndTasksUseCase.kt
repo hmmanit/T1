@@ -1,7 +1,7 @@
 package com.homanad.android.domain.usecase.boardAndTasks
 
 import com.homanad.android.domain.common.UseCase
-import com.homanad.android.domain.entity.BoardAndTasks
+import com.homanad.android.domain.entity.datamodel.BoardAndTasks
 import com.homanad.android.domain.repository.BoardAndTaskRepository
 
 class GetAllBoardAndTasksUseCase(
