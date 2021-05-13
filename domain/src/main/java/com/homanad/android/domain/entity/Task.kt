@@ -13,10 +13,10 @@ data class Task(
     val images: List<String> = ArrayList()
 )
 
-enum class Priority(point: Int) {
+enum class Priority(val point: Int) {
     LOW(0), MEDIUM(1), HIGH(2)
 }
 
-enum class Status(status: Int) {
+enum class Status(val status: Int) {
     TODO(0), IN_PROGRESS(1), DONE(2)
 }

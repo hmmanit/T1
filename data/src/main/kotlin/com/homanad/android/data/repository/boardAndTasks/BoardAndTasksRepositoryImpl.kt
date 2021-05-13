@@ -3,8 +3,9 @@ package com.homanad.android.data.repository.boardAndTasks
 import com.homanad.android.data.repository.boardAndTasks.datasource.BoardAndTasksDataSource
 import com.homanad.android.domain.entity.BoardAndTasks
 import com.homanad.android.domain.repository.BoardAndTaskRepository
+import javax.inject.Inject
 
-class BoardAndTasksRepositoryImpl(
+class BoardAndTasksRepositoryImpl @Inject constructor(
     private val boardAndTasksDataSource: BoardAndTasksDataSource
 ) : BoardAndTaskRepository {
 
