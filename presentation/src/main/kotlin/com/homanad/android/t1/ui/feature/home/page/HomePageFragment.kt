@@ -13,6 +13,7 @@ import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
 import com.homanad.android.t1.databinding.FragmentHomePageBinding
+import com.homanad.android.t1.ui.feature.home.page.adapter.HomeBoardAdapter
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeTaskAdapter
 import com.homanad.android.t1.ui.feature.home.page.type.Page
 import com.homanad.android.t1.ui.feature.home.state.HomeState
@@ -30,6 +31,10 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
 
     private val homeTaskAdapter by lazy {
         HomeTaskAdapter()
+    }
+
+    private val homeBoardsAdapter by lazy {
+        HomeBoardAdapter()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +56,9 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
                 when (it) {
                     is HomeState.TaskInBoardsReturned -> {
                         homeTaskAdapter.setTasks(it.taskInBoards)
+                    }
+                    is HomeState.BoardAndTasksReturned -> {
+                        homeBoardsAdapter.setBoards(it.boardAndTasks)
                     }
                     else -> {
                     }
@@ -79,7 +87,12 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
                 }
             }
             Page.BOARDS.id -> {
-
+                binding.recyclerSliding.run {
+                    adapter = homeBoardsAdapter
+                    addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
+                    layoutManager =
+                        LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                }
             }
             Page.OTHERS.id -> {
 

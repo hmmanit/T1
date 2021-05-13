@@ -1,6 +1,5 @@
 package com.homanad.android.t1.ui.feature.home.vm
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.homanad.android.domain.usecase.boardAndTasks.GetAllBoardAndTasksUseCase
@@ -24,8 +23,14 @@ class HomeViewModel @Inject constructor(
 
     fun getAllBoardAndTasks() {
         viewModelScope.launch(Dispatchers.IO) {
-            getAllBoardAndTasksUseCase().forEach {
-                Log.d("aaaaaaaaaaaaa", it.toString())
+//            getAllBoardAndTasksUseCase().forEach {
+//                Log.d("aaaaaaaaaaaaa", it.toString())
+//            }
+            _state.value = HomeState.Loading
+            _state.value = try {
+                HomeState.BoardAndTasksReturned(getAllBoardAndTasksUseCase())
+            } catch (e: Exception) {
+                HomeState.Error("Can't get Task in Boards")
             }
         }
     }
@@ -35,6 +40,7 @@ class HomeViewModel @Inject constructor(
 //            getAllTaskInBoardUseCase().forEach {
 ////                Log.d("aaaaaaaaaaaaa2", it.toString())
 //            }
+            _state.value = HomeState.Loading
             _state.value = try {
                 HomeState.TaskInBoardsReturned(getAllTaskInBoardUseCase())
             } catch (e: Exception) {
