@@ -12,7 +12,11 @@
     <dimen name="largeCornerRadius">@dimen/dimen_16adp</dimen>
     <dimen name="xLargeCornerRadius">@dimen/dimen_32adp</dimen>
 
+    <dimen name="defaultButtonSize">@dimen/dimen_20adp</dimen>
+    <dimen name="mediumButtonSize">@dimen/dimen_25adp</dimen>
+
     //dimensions
     <dimen name="homeTaskHeight">@dimen/dimen_180adp</dimen>
+    <dimen name="toolbarHeight">@dimen/dimen_48adp</dimen>
 
 </resources>
