@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ShapeAppearance.TopRadiusCard" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSizeTopLeft">@dimen/xLargeCornerRadius</item>
+        <item name="cornerSizeTopRight">@dimen/xLargeCornerRadius</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="ShapeAppearance.RoundedButton" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <!--        <item name="cornerSizeTopLeft">@dimen/xLargeCornerRadius</item>-->
+        <!--        <item name="cornerSizeTopRight">@dimen/xLargeCornerRadius</item>-->
+        <!--        <item name="cornerSizeBottomLeft">0dp</item>-->
+        <!--        <item name="cornerSizeBottomRight">0dp</item>-->
+        <item name="cornerSize">@dimen/largeMargin</item>
+    </style>
+
+</resources>

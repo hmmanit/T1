@@ -11,6 +11,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#5f3ff8"
         tools:context=".ui.feature.home.task.CreateOrEditTaskFragment">
 
         <include
@@ -50,7 +51,6 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:cardBackgroundColor="#cce7ff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_description"
             app:shapeAppearance="@style/ShapeAppearance.TopRadiusCard">
@@ -182,13 +182,25 @@
                     app:layout_constraintTop_toBottomOf="@id/spinner_status" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_board"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/smallMargin"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/button_create"
                     app:layout_constraintEnd_toEndOf="@id/spinner_status"
                     app:layout_constraintStart_toStartOf="@id/text_board"
                     app:layout_constraintTop_toBottomOf="@id/text_board" />
+
+                <com.google.android.material.button.MaterialButton
+                    app:shapeAppearance="@style/ShapeAppearance.RoundedButton"
+                    android:id="@+id/button_create"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Create"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/recycler_board"
+                    app:layout_constraintStart_toStartOf="@id/recycler_board" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
