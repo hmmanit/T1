@@ -6,9 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
-import com.homanad.android.common.components.ui.BaseActivityWithBinding
-import com.homanad.android.common.components.ui.binding.contentView
 import com.homanad.android.t1.R
+import com.homanad.android.t1.common.Animator
 import com.homanad.android.t1.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import np.com.susanthapa.curved_bottom_navigation.CbnMenuItem
@@ -80,6 +79,13 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         destination: NavDestination,
         arguments: Bundle?
     ) {
-
+        when (destination.id) {
+            R.id.homeFragment -> {
+                Animator.showBottomBar(binding.navView, onAnimationEnd = {})
+            }
+            else -> {
+                Animator.hideBottomBar(binding.navView, onAnimationEnd = {})
+            }
+        }
     }
 }

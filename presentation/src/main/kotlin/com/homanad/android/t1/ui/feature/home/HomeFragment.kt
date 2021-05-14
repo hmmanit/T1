@@ -53,6 +53,10 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupTabs() {
+        binding.fabCreate.run {
+            setShowMotionSpecResource(R.animator.fab_show)
+            setHideMotionSpecResource(R.animator.fab_hide)
+        }
         val adapter = HomeViewPagerAdapter(requireActivity())
         binding.viewPager.adapter = adapter
         binding.viewPager.isUserInputEnabled = false
