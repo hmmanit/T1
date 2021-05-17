@@ -17,6 +17,7 @@ import com.homanad.android.t1.R
 import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
 import com.homanad.android.t1.databinding.FragmentCreateOrEditTaskBinding
 import com.homanad.android.t1.ui.feature.home.task.adapter.PriorityAdapter
+import com.homanad.android.t1.ui.feature.home.task.adapter.StatusAdapter
 
 class CreateOrEditTaskFragment : BaseFragment() {
 
@@ -69,12 +70,17 @@ class CreateOrEditTaskFragment : BaseFragment() {
 
     override fun updateUI() {
         val priorityAdapter = PriorityAdapter()
+        val statusAdapter = StatusAdapter(requireContext())
         with(binding) {
             recyclerPriority.run {
                 adapter = priorityAdapter
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
                 addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
+            }
+
+            spinnerStatus.run {
+                adapter = statusAdapter
             }
         }
     }

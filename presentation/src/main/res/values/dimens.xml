@@ -12,6 +12,7 @@
     <dimen name="largeCornerRadius">@dimen/dimen_16adp</dimen>
     <dimen name="xLargeCornerRadius">@dimen/dimen_32adp</dimen>
 
+    <dimen name="smallButtonSize">@dimen/dimen_15adp</dimen>
     <dimen name="defaultButtonSize">@dimen/dimen_20adp</dimen>
     <dimen name="mediumButtonSize">@dimen/dimen_25adp</dimen>
 
