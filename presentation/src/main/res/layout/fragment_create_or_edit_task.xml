@@ -23,7 +23,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/defaultMargin"
+            android:layout_marginEnd="@dimen/defaultMargin"
             android:hint="asdadsadsa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -38,7 +42,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/defaultMargin"
+            android:layout_marginEnd="@dimen/defaultMargin"
             android:hint="asdadsadsa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_title">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -51,6 +59,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/defaultMargin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/input_description"
             app:shapeAppearance="@style/ShapeAppearance.TopRadiusCard">
@@ -59,17 +68,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/defaultMargin"
+                    android:layout_marginTop="@dimen/largeMargin"
+                    android:text="Start time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_start_date"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/defaultMargin"
-                    android:layout_marginTop="@dimen/largeMargin"
+                    android:layout_marginEnd="@dimen/defaultMargin"
                     android:hint="hjgkghk"
                     app:layout_constraintEnd_toStartOf="@id/input_start_time"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/text_start">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_start_date"
@@ -85,12 +104,12 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/defaultMargin"
-                    android:layout_marginTop="@dimen/largeMargin"
+                    android:layout_marginEnd="@dimen/defaultMargin"
                     android:hint="hjgkghk"
-                    app:layout_constraintEnd_toStartOf="@id/input_end_date"
+                    app:layout_constraintBottom_toBottomOf="@id/input_start_date"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/input_start_date"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="@id/input_start_date">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_start_time"
@@ -101,17 +120,27 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/text_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/largeMargin"
+                    android:layout_marginEnd="@dimen/defaultMargin"
+                    android:text="End time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/input_start_date" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/input_end_date"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/defaultMargin"
-                    android:layout_marginTop="@dimen/largeMargin"
                     android:hint="hjgkghk"
+                    app:layout_constraintBottom_toBottomOf="@id/input_end_time"
                     app:layout_constraintEnd_toStartOf="@id/input_end_time"
-                    app:layout_constraintStart_toEndOf="@id/input_start_time"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/input_end_time">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_end_date"
@@ -128,12 +157,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/defaultMargin"
-                    android:layout_marginTop="@dimen/largeMargin"
                     android:layout_marginEnd="@dimen/defaultMargin"
                     android:hint="hjgkghk"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/input_end_date"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toBottomOf="@id/text_end">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_end_time"
@@ -151,7 +179,7 @@
                     android:layout_marginTop="@dimen/largeMargin"
                     android:text="Priority"
                     app:layout_constraintStart_toStartOf="@id/input_start_date"
-                    app:layout_constraintTop_toBottomOf="@id/input_start_date" />
+                    app:layout_constraintTop_toBottomOf="@id/input_end_time" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_priority"
