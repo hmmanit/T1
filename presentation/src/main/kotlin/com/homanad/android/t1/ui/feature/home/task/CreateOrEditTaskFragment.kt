@@ -12,6 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Slide
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.google.android.material.transition.MaterialContainerTransform
 import com.homanad.android.common.components.recyclerView.decoration.SpaceItemDecoration
 import com.homanad.android.common.components.ui.BaseFragment
@@ -27,6 +30,7 @@ import com.homanad.android.t1.ui.feature.home.vm.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
 
 @AndroidEntryPoint
 class CreateOrEditTaskFragment : BaseFragment() {
@@ -94,10 +98,56 @@ class CreateOrEditTaskFragment : BaseFragment() {
         homeViewModel.getAllBoardAndTasks()
     }
 
+    private val datePicker by lazy {
+        MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Select date")
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .build()
+    }
+
+    private fun getTimePicker(): MaterialTimePicker {
+        return MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_12H)
+            .setHour(12)
+            .setMinute(12)
+            .setTitleText("Select time")
+            .build()
+    }
+
     override fun updateUI() {
         val priorityAdapter = PriorityAdapter()
         val statusAdapter = StatusAdapter(requireContext())
         with(binding) {
+            textStartDate.setOnClickListener {
+                datePicker.addOnPositiveButtonClickListener {
+                    textStartDate.setText(getDateString(it))
+                }
+                datePicker.show(childFragmentManager, TAG_DATE_PICKER)
+            }
+
+            textEndDate.setOnClickListener {
+                datePicker.addOnPositiveButtonClickListener {
+                    textEndDate.setText(getDateString(it))
+                }
+                datePicker.show(childFragmentManager, TAG_DATE_PICKER)
+            }
+
+            textStartTime.setOnClickListener {
+                val picker = getTimePicker()
+                picker.addOnPositiveButtonClickListener {
+                    textStartTime.setText("${picker.hour}:${picker.minute}")
+                }
+                picker.show(childFragmentManager, TAG_TIME_PICKER)
+            }
+
+            textEndTime.setOnClickListener {
+                val picker = getTimePicker()
+                picker.addOnPositiveButtonClickListener {
+                    textEndTime.setText("${picker.hour}:${picker.minute}")
+                }
+                picker.show(childFragmentManager, TAG_TIME_PICKER)
+            }
+
             recyclerPriority.run {
                 adapter = priorityAdapter
                 layoutManager =
@@ -120,5 +170,48 @@ class CreateOrEditTaskFragment : BaseFragment() {
     companion object {
         @JvmStatic
         fun newInstance() = CreateOrEditTaskFragment()
+
+        private const val TAG_DATE_PICKER = "TAG_DATE_PICKER"
+        private const val TAG_TIME_PICKER = "TAG_TIME_PICKER"
+    }
+
+    fun getDateString(timestamp: Long): String {
+        val calendar: Calendar = GregorianCalendar()
+        calendar.timeInMillis = timestamp
+        var datetime = ""
+        if (calendar.get(Calendar.DATE) < 10) datetime += '0'
+        datetime += calendar.get(Calendar.DATE)
+        datetime += "/"
+        if (calendar.get(Calendar.MONTH) < 9) datetime += '0'
+        datetime += calendar.get(Calendar.MONTH) + 1
+        datetime += "/"
+        datetime += calendar.get(Calendar.YEAR)
+//        datetime += " "
+//        if (calendar.get(Calendar.HOUR_OF_DAY) < 10) datetime += '0'
+//        datetime += calendar.get(Calendar.HOUR_OF_DAY)
+//        datetime += ":"
+//        if (calendar.get(Calendar.MINUTE) < 10) datetime += '0'
+//        datetime += calendar.get(Calendar.MINUTE)
+        return datetime
+    }
+
+    fun getTimeString(timestamp: Long): String {
+        val calendar: Calendar = GregorianCalendar()
+        calendar.timeInMillis = timestamp
+        var datetime = ""
+//        if (calendar.get(Calendar.DATE) < 10) datetime += '0'
+//        datetime += calendar.get(Calendar.DATE)
+//        datetime += "/"
+//        if (calendar.get(Calendar.MONTH) < 9) datetime += '0'
+//        datetime += calendar.get(Calendar.MONTH) + 1
+//        datetime += "/"
+//        datetime += calendar.get(Calendar.YEAR)
+//        datetime += " "
+        if (calendar.get(Calendar.HOUR_OF_DAY) < 10) datetime += '0'
+        datetime += calendar.get(Calendar.HOUR_OF_DAY)
+        datetime += ":"
+        if (calendar.get(Calendar.MINUTE) < 10) datetime += '0'
+        datetime += calendar.get(Calendar.MINUTE)
+        return datetime
     }
 }
