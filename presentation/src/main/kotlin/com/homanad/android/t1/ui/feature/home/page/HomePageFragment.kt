@@ -33,7 +33,7 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
         HomeTaskAdapter()
     }
 
-    private val homeBoardsAdapter by lazy {
+    private val homeBoardAdapter by lazy {
         HomeBoardAdapter()
     }
 
@@ -58,7 +58,7 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
                         homeTaskAdapter.setTasks(it.taskInBoards)
                     }
                     is HomeState.BoardAndTasksReturned -> {
-                        homeBoardsAdapter.setBoards(it.boardAndTasks)
+                        homeBoardAdapter.setBoards(it.boardAndTasks)
                     }
                     else -> {
                     }
@@ -87,7 +87,7 @@ class HomePageFragment(private val pageId: Int) : BaseFragment() {
             }
             Page.BOARDS.id -> {
                 binding.recyclerSliding.run {
-                    adapter = homeBoardsAdapter
+                    adapter = homeBoardAdapter
                     addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
                     layoutManager =
                         LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)

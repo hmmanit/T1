@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Slide
 import com.google.android.material.transition.MaterialContainerTransform
@@ -16,12 +19,25 @@ import com.homanad.android.common.extensions.context.themeColor
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
 import com.homanad.android.t1.databinding.FragmentCreateOrEditTaskBinding
+import com.homanad.android.t1.ui.feature.home.page.adapter.HomeBoardAdapter
+import com.homanad.android.t1.ui.feature.home.state.HomeState
 import com.homanad.android.t1.ui.feature.home.task.adapter.PriorityAdapter
 import com.homanad.android.t1.ui.feature.home.task.adapter.StatusAdapter
+import com.homanad.android.t1.ui.feature.home.vm.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class CreateOrEditTaskFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCreateOrEditTaskBinding
+    private val homeViewModel: HomeViewModel by viewModels()
+
+    private val homeBoardAdapter by lazy {
+        HomeBoardAdapter()
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +77,21 @@ class CreateOrEditTaskFragment : BaseFragment() {
     }
 
     override fun observeData() {
-
+        lifecycleScope.launch {
+            homeViewModel.state.collect {
+                when (it) {
+                    is HomeState.BoardAndTasksReturned -> {
+                        homeBoardAdapter.setBoards(it.boardAndTasks)
+                    }
+                    else -> {
+                    }
+                }
+            }
+        }
     }
 
     override fun setupViewModel() {
-
+        homeViewModel.getAllBoardAndTasks()
     }
 
     override fun updateUI() {
@@ -81,6 +107,12 @@ class CreateOrEditTaskFragment : BaseFragment() {
 
             spinnerStatus.run {
                 adapter = statusAdapter
+            }
+
+            recyclerBoard.run {
+                adapter = homeBoardAdapter
+                addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
+                layoutManager = GridLayoutManager(requireContext(), 2)
             }
         }
     }
