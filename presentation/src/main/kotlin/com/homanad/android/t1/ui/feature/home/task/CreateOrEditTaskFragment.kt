@@ -162,7 +162,7 @@ class CreateOrEditTaskFragment : BaseFragment() {
             recyclerBoard.run {
                 adapter = homeBoardAdapter
                 addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
-                layoutManager = GridLayoutManager(requireContext(), 2)
+                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
         }
     }

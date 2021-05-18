@@ -42,6 +42,16 @@
             app:layout_constraintStart_toStartOf="@id/icon"
             app:layout_constraintTop_toBottomOf="@id/icon" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_selected"
+            app:srcCompat="@drawable/ic_checked"
+            android:layout_width="@dimen/smallButtonSize"
+            android:layout_height="@dimen/smallButtonSize"
+            android:layout_marginEnd="@dimen/defaultMargin"
+            app:layout_constraintBottom_toBottomOf="@id/text_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_number" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
