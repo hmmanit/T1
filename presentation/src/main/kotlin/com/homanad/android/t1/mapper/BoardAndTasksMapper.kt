@@ -1,8 +1,8 @@
 package com.homanad.android.t1.mapper
 
 import com.homanad.android.domain.entity.datamodel.BoardAndTasks
-import com.homanad.android.t1.model.StatsBoardModel
-import com.homanad.android.t1.model.StatsStatusModel
+import com.homanad.android.t1.model.StatBoardModel
+import com.homanad.android.t1.model.StatStatusModel
 
 fun BoardAndTasks.getStatusSet(): Set<Int> {
     val set = mutableSetOf<Int>()
@@ -12,14 +12,14 @@ fun BoardAndTasks.getStatusSet(): Set<Int> {
     return set
 }
 
-fun BoardAndTasks.getStatsBoardModel(): StatsBoardModel {
-    val statuses = mutableListOf<StatsStatusModel>()
+fun BoardAndTasks.getStatsBoardModel(): StatBoardModel {
+    val statuses = mutableListOf<StatStatusModel>()
     getStatusSet().forEach { status ->
         var count = 0
         tasks.forEach {
             if (it.status == status) count++
         }
-        statuses.add(StatsStatusModel(status, count))
+        statuses.add(StatStatusModel(status, count))
     }
-    return StatsBoardModel(board, statuses)
+    return StatBoardModel(board, statuses)
 }

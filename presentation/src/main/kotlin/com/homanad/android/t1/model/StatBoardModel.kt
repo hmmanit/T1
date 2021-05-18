@@ -2,12 +2,12 @@ package com.homanad.android.t1.model
 
 import com.homanad.android.domain.entity.Board
 
-data class StatsBoardModel(
+data class StatBoardModel(
     val board: Board,
-    var statsStatusModel: List<StatsStatusModel>
+    var statStatusModel: List<StatStatusModel>
 )
 
-data class StatsStatusModel(
+data class StatStatusModel(
     val status: Int,
     val count: Int
 )

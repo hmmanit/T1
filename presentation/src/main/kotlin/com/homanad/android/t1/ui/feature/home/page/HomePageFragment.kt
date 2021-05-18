@@ -13,6 +13,8 @@ import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
 import com.homanad.android.t1.databinding.FragmentHomePageBinding
+import com.homanad.android.t1.mapper.getStatsBoardModel
+import com.homanad.android.t1.ui.feature.home.page.adapter.ChartBoardAdapter
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeBoardAdapter
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeTaskAdapter
 import com.homanad.android.t1.ui.feature.home.page.type.Page

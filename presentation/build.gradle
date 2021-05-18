@@ -85,4 +85,6 @@ dependencies {
     //room
     implementation room //need this to compile Hilt DI
 //    kapt roomCompiler
+
+    implementation mp_chart
 }
