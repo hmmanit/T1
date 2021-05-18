@@ -39,6 +39,8 @@ ext {
 
     def moshi_version = '1.12.0'
 
+    def mp_chart_version = 'v3.1.0'
+
     rxAndroid2 = "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
     rxJava2 = "io.reactivex.rxjava2:rxjava:$rxjava_version"
 
@@ -108,4 +110,6 @@ ext {
 
     moshi = "com.squareup.moshi:moshi:$moshi_version"
     moshi_compiler = "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    mp_chart = "com.github.PhilJay:MPAndroidChart:$mp_chart_version"
 }
