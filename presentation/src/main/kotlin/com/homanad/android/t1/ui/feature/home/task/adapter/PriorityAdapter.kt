@@ -4,9 +4,12 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
+import com.homanad.android.common.extensions.view.gone
+import com.homanad.android.common.extensions.view.visible
 import com.homanad.android.domain.entity.type.Priority
 import com.homanad.android.t1.R
 import com.homanad.android.t1.model.PriorityModel
@@ -19,14 +22,29 @@ class PriorityAdapter : RecyclerView.Adapter<PriorityAdapter.ItemHolder>() {
         PriorityModel(Priority.HIGH.point, "High", "#F44336"),
     )
 
+    private var selectedPos = -1
+
+    private fun setSelection(position: Int) {
+        val temp = selectedPos
+        selectedPos = position
+        notifyItemChanged(temp)
+        notifyItemChanged(selectedPos)
+    }
+
     inner class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val container = view.findViewById<MaterialCardView>(R.id.container)
         private val textTitle = view.findViewById<MaterialTextView>(R.id.text_title)
+        private val iconSelected = view.findViewById<AppCompatImageView>(R.id.icon_selected)
 
         fun bind(priority: PriorityModel) {
             container.setCardBackgroundColor(Color.parseColor(priority.color))
+            container.setOnClickListener {
+                setSelection(adapterPosition)
+            }
             textTitle.text = priority.title
+            if (adapterPosition == selectedPos) iconSelected.visible()
+            else iconSelected.gone()
         }
     }
 
