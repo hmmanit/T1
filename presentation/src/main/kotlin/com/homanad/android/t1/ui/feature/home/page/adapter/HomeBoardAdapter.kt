@@ -34,6 +34,8 @@ class HomeBoardAdapter : RecyclerView.Adapter<HomeBoardAdapter.ItemHolder>() {
         notifyItemChanged(selectedPos)
     }
 
+    fun getSelectedBoardId(): Long = boards[selectedPos].board.boardId
+
     inner class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val root = view.rootView

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Slide
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -19,6 +19,7 @@ import com.google.android.material.transition.MaterialContainerTransform
 import com.homanad.android.common.components.recyclerView.decoration.SpaceItemDecoration
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.common.extensions.context.themeColor
+import com.homanad.android.domain.entity.Task
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
 import com.homanad.android.t1.databinding.FragmentCreateOrEditTaskBinding
@@ -38,10 +39,17 @@ class CreateOrEditTaskFragment : BaseFragment() {
     private lateinit var binding: FragmentCreateOrEditTaskBinding
     private val homeViewModel: HomeViewModel by viewModels()
 
+    private val priorityAdapter by lazy {
+        PriorityAdapter()
+    }
+
+    private val statusAdapter by lazy {
+        StatusAdapter(requireContext())
+    }
+
     private val homeBoardAdapter by lazy {
         HomeBoardAdapter()
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +95,9 @@ class CreateOrEditTaskFragment : BaseFragment() {
                     is HomeState.BoardAndTasksReturned -> {
                         homeBoardAdapter.setBoards(it.boardAndTasks)
                     }
+                    is HomeState.TaskCreated -> {
+                        findNavController().navigateUp()
+                    }
                     else -> {
                     }
                 }
@@ -115,8 +126,6 @@ class CreateOrEditTaskFragment : BaseFragment() {
     }
 
     override fun updateUI() {
-        val priorityAdapter = PriorityAdapter()
-        val statusAdapter = StatusAdapter(requireContext())
         with(binding) {
             textStartDate.setOnClickListener {
                 datePicker.addOnPositiveButtonClickListener {
@@ -162,7 +171,27 @@ class CreateOrEditTaskFragment : BaseFragment() {
             recyclerBoard.run {
                 adapter = homeBoardAdapter
                 addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
-                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            }
+
+            buttonCreate.setOnClickListener {
+                val taskTitle = textTitle.text.toString()
+                val taskDescription = textDescription.text.toString()
+                val task =
+                    Task(
+                        0,
+                        homeBoardAdapter.getSelectedBoardId(),
+                        taskTitle,
+                        taskDescription,
+                        priorityAdapter.getSelectedPriorityPoint(),
+                        "#ff0000",
+                        statusAdapter.getItem(spinnerStatus.selectedItemPosition).status,
+                        1,
+                        1,
+                        listOf()
+                    )
+                homeViewModel.createTask(task)
             }
         }
     }
@@ -175,7 +204,7 @@ class CreateOrEditTaskFragment : BaseFragment() {
         private const val TAG_TIME_PICKER = "TAG_TIME_PICKER"
     }
 
-    fun getDateString(timestamp: Long): String {
+    private fun getDateString(timestamp: Long): String {
         val calendar: Calendar = GregorianCalendar()
         calendar.timeInMillis = timestamp
         var datetime = ""
@@ -192,26 +221,6 @@ class CreateOrEditTaskFragment : BaseFragment() {
 //        datetime += ":"
 //        if (calendar.get(Calendar.MINUTE) < 10) datetime += '0'
 //        datetime += calendar.get(Calendar.MINUTE)
-        return datetime
-    }
-
-    fun getTimeString(timestamp: Long): String {
-        val calendar: Calendar = GregorianCalendar()
-        calendar.timeInMillis = timestamp
-        var datetime = ""
-//        if (calendar.get(Calendar.DATE) < 10) datetime += '0'
-//        datetime += calendar.get(Calendar.DATE)
-//        datetime += "/"
-//        if (calendar.get(Calendar.MONTH) < 9) datetime += '0'
-//        datetime += calendar.get(Calendar.MONTH) + 1
-//        datetime += "/"
-//        datetime += calendar.get(Calendar.YEAR)
-//        datetime += " "
-        if (calendar.get(Calendar.HOUR_OF_DAY) < 10) datetime += '0'
-        datetime += calendar.get(Calendar.HOUR_OF_DAY)
-        datetime += ":"
-        if (calendar.get(Calendar.MINUTE) < 10) datetime += '0'
-        datetime += calendar.get(Calendar.MINUTE)
         return datetime
     }
 }

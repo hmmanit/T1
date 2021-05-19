@@ -31,6 +31,8 @@ class PriorityAdapter : RecyclerView.Adapter<PriorityAdapter.ItemHolder>() {
         notifyItemChanged(selectedPos)
     }
 
+    fun getSelectedPriorityPoint(): Int = priorities[selectedPos].point
+
     inner class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val container = view.findViewById<MaterialCardView>(R.id.container)

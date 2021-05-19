@@ -8,6 +8,7 @@ sealed class HomeState {
     object Loading : HomeState()
     data class Error(val message: String) : HomeState()
 
+    data class TaskCreated(val taskId: Long) : HomeState()
     data class TaskInBoardsReturned(val taskInBoards: List<TaskInBoard>) : HomeState()
     data class BoardAndTasksReturned(val boardAndTasks: List<BoardAndTasks>) : HomeState()
 }
