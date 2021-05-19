@@ -10,17 +10,11 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 import com.homanad.android.common.extensions.view.gone
 import com.homanad.android.common.extensions.view.visible
-import com.homanad.android.domain.entity.type.Priority
 import com.homanad.android.t1.R
+import com.homanad.android.t1.common.priorities
 import com.homanad.android.t1.model.PriorityModel
 
 class PriorityAdapter : RecyclerView.Adapter<PriorityAdapter.ItemHolder>() {
-
-    private val priorities = listOf(
-        PriorityModel(Priority.LOW.point, "Low", "#FF4CAF50"),
-        PriorityModel(Priority.MEDIUM.point, "Medium", "#FFFFC107"),
-        PriorityModel(Priority.HIGH.point, "High", "#F44336"),
-    )
 
     private var selectedPos = -1
 

@@ -8,19 +8,13 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
-import com.homanad.android.domain.entity.type.Status
 import com.homanad.android.t1.R
+import com.homanad.android.t1.common.statuses
 import com.homanad.android.t1.model.StatusModel
 
 class StatusAdapter(context: Context) : BaseAdapter() {
 
     private val mInflater = LayoutInflater.from(context)
-
-    private val statuses = listOf(
-        StatusModel(Status.TODO.status, "To Do", "#FFFFC107"),
-        StatusModel(Status.IN_PROGRESS.status, "In Progress", "#FF03A9F4"),
-        StatusModel(Status.DONE.status, "Done", "#FF4CAF50"),
-    )
 
     override fun getCount(): Int {
         return statuses.size

@@ -15,6 +15,13 @@
         <item name="cornerSizeBottomRight">@dimen/xLargeCornerRadius</item>
     </style>
 
+    <style name="ShapeAppearance.LeafCard" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">@dimen/xLargeCornerRadius</item>
+        <item name="cornerSizeBottomLeft">@dimen/xLargeCornerRadius</item>
+        <item name="cornerSizeBottomRight">@dimen/largeCornerRadius</item>
+    </style>
+
     <style name="ShapeAppearance.RoundedButton" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <!--        <item name="cornerSizeTopLeft">@dimen/xLargeCornerRadius</item>-->
         <!--        <item name="cornerSizeTopRight">@dimen/xLargeCornerRadius</item>-->
