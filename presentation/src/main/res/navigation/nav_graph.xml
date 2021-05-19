@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_createOrEditTaskFragment"
             app:destination="@id/createOrEditTaskFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_createOrEditBoardFragment"
+            app:destination="@id/createOrEditBoardFragment" />
     </fragment>
 
     <fragment
@@ -38,4 +41,10 @@
         android:name="com.homanad.android.t1.ui.feature.home.task.CreateOrEditTaskFragment"
         android:label="CreateOrEditTaskFragment"
         tools:layout="@layout/fragment_create_or_edit_task" />
+
+    <fragment
+        android:id="@+id/createOrEditBoardFragment"
+        android:name="com.homanad.android.t1.ui.feature.home.board.CreateOrEditBoardFragment"
+        android:label="CreateOrEditBoardFragment"
+        tools:layout="@layout/fragment_create_or_edit_board" />
 </navigation>

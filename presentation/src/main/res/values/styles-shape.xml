@@ -8,6 +8,13 @@
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
+    <style name="ShapeAppearance.BottomRadiusCard" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">@dimen/xLargeCornerRadius</item>
+        <item name="cornerSizeBottomRight">@dimen/xLargeCornerRadius</item>
+    </style>
+
     <style name="ShapeAppearance.RoundedButton" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <!--        <item name="cornerSizeTopLeft">@dimen/xLargeCornerRadius</item>-->
         <!--        <item name="cornerSizeTopRight">@dimen/xLargeCornerRadius</item>-->

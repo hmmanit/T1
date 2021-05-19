@@ -88,7 +88,16 @@ class HomeFragment : BaseFragment() {
                     Page.BOARDS.id -> {
                         binding.fabCreate.visible()
                         binding.fabCreate.setOnClickListener {
+                            exitTransition = getExitMaterialElevationScale(
+                                resources.getInteger(R.integer.motion_duration_large).toLong()
+                            )
+                            reenterTransition = getReturnMaterialSharedAxis(
+                                resources.getInteger(R.integer.motion_duration_large).toLong()
+                            )
 
+                            val directions =
+                                HomeFragmentDirections.actionHomeFragmentToCreateOrEditBoardFragment()
+                            findNavController().navigate(directions)
                         }
                     }
                     Page.OTHERS.id -> {
