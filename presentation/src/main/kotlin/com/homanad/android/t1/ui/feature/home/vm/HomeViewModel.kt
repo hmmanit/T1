@@ -2,7 +2,9 @@ package com.homanad.android.t1.ui.feature.home.vm
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.homanad.android.domain.entity.Board
 import com.homanad.android.domain.entity.Task
+import com.homanad.android.domain.usecase.board.CreateBoardUseCase
 import com.homanad.android.domain.usecase.boardAndTasks.GetAllBoardAndTasksUseCase
 import com.homanad.android.domain.usecase.task.CreateTaskUseCase
 import com.homanad.android.domain.usecase.taskInBoard.GetAllTaskInBoardUseCase
@@ -17,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val createTaskUseCase: CreateTaskUseCase,
+    private val createBoardUseCase: CreateBoardUseCase,
     private val getAllBoardAndTasksUseCase: GetAllBoardAndTasksUseCase,
     private val getAllTaskInBoardUseCase: GetAllTaskInBoardUseCase
 ) : ViewModel() {
@@ -31,6 +34,17 @@ class HomeViewModel @Inject constructor(
                 HomeState.TaskCreated(createTaskUseCase(task))
             } catch (e: Exception) {
                 HomeState.Error("Can't create Task")
+            }
+        }
+    }
+
+    fun createBoard(board: Board) {
+        viewModelScope.launch(Dispatchers.IO) {
+            _state.value = HomeState.Loading
+            _state.value = try {
+                HomeState.BoardCreated(createBoardUseCase(board))
+            } catch (e: Exception) {
+                HomeState.Error("Can't create Board")
             }
         }
     }
