@@ -1,0 +1,77 @@
+package com.homanad.android.t1.common
+
+import android.util.Log
+import java.util.*
+
+const val ONE_DAY_IN_MILLIS = 86400000
+
+fun generateFromToday(): List<Long> {
+    val today = System.currentTimeMillis()
+    val days = mutableListOf(today)
+
+//    var up = today
+//    var down = today
+//    while (days.size < 21) {
+//        down -= ONE_DAY_IN_MILLIS
+//        up += ONE_DAY_IN_MILLIS
+//        days.add(0, down)
+//        days.add(up)
+//    }
+    days.addPreviousTenDays(today)
+    days.addNextTenDays(today)
+    days.forEach {
+        Log.d("dayyyyyyyy:\n", getDateString(it))
+    }
+    return days
+}
+
+fun MutableList<Long>.addNextTenDays(currentDayInMillis: Long) {
+    val mSize = size
+
+    var today = currentDayInMillis
+    while (size < mSize + 10) {
+        today += ONE_DAY_IN_MILLIS
+        add(today)
+    }
+}
+
+fun MutableList<Long>.addPreviousTenDays(currentDayInMillis: Long) {
+    val mSize = size
+
+    var today = currentDayInMillis
+    while (size < mSize + 10) {
+        today -= ONE_DAY_IN_MILLIS
+        add(0, today)
+    }
+}
+
+//fun generatePreviousTenDays(currentDayInMillis: Long): List<Long> {
+//    val days = mutableListOf<Long>()
+//
+//    var today = currentDayInMillis
+//    while (days.size < 10) {
+//        today -= ONE_DAY_IN_MILLIS
+//        days.add(0, today)
+//    }
+//    return days
+//}
+
+fun getDateString(timestamp: Long): String {
+    val calendar: Calendar = GregorianCalendar()
+    calendar.timeInMillis = timestamp
+    var datetime = ""
+    if (calendar.get(Calendar.DATE) < 10) datetime += '0'
+    datetime += calendar.get(Calendar.DATE)
+    datetime += "/"
+    if (calendar.get(Calendar.MONTH) < 9) datetime += '0'
+    datetime += calendar.get(Calendar.MONTH) + 1
+    datetime += "/"
+    datetime += calendar.get(Calendar.YEAR)
+//        datetime += " "
+//        if (calendar.get(Calendar.HOUR_OF_DAY) < 10) datetime += '0'
+//        datetime += calendar.get(Calendar.HOUR_OF_DAY)
+//        datetime += ":"
+//        if (calendar.get(Calendar.MINUTE) < 10) datetime += '0'
+//        datetime += calendar.get(Calendar.MINUTE)
+    return datetime
+}

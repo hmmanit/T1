@@ -22,6 +22,7 @@ import com.homanad.android.common.extensions.context.themeColor
 import com.homanad.android.domain.entity.Task
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
+import com.homanad.android.t1.common.getDateString
 import com.homanad.android.t1.databinding.FragmentCreateOrEditTaskBinding
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeBoardAdapter
 import com.homanad.android.t1.ui.feature.home.state.HomeState
@@ -202,25 +203,5 @@ class CreateOrEditTaskFragment : BaseFragment() {
 
         private const val TAG_DATE_PICKER = "TAG_DATE_PICKER"
         private const val TAG_TIME_PICKER = "TAG_TIME_PICKER"
-    }
-
-    private fun getDateString(timestamp: Long): String {
-        val calendar: Calendar = GregorianCalendar()
-        calendar.timeInMillis = timestamp
-        var datetime = ""
-        if (calendar.get(Calendar.DATE) < 10) datetime += '0'
-        datetime += calendar.get(Calendar.DATE)
-        datetime += "/"
-        if (calendar.get(Calendar.MONTH) < 9) datetime += '0'
-        datetime += calendar.get(Calendar.MONTH) + 1
-        datetime += "/"
-        datetime += calendar.get(Calendar.YEAR)
-//        datetime += " "
-//        if (calendar.get(Calendar.HOUR_OF_DAY) < 10) datetime += '0'
-//        datetime += calendar.get(Calendar.HOUR_OF_DAY)
-//        datetime += ":"
-//        if (calendar.get(Calendar.MINUTE) < 10) datetime += '0'
-//        datetime += calendar.get(Calendar.MINUTE)
-        return datetime
     }
 }
