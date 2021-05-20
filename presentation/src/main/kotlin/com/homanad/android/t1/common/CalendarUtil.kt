@@ -1,6 +1,7 @@
 package com.homanad.android.t1.common
 
 import android.util.Log
+import com.homanad.android.t1.model.DayModel
 import java.util.*
 
 const val ONE_DAY_IN_MILLIS = 86400000
@@ -74,4 +75,31 @@ fun getDateString(timestamp: Long): String {
 //        if (calendar.get(Calendar.MINUTE) < 10) datetime += '0'
 //        datetime += calendar.get(Calendar.MINUTE)
     return datetime
+}
+
+fun Long.toDayModel(): DayModel {
+    val calendar: Calendar = GregorianCalendar()
+    calendar.timeInMillis = this
+    var dayOfMonth = ""
+    dayOfMonth += calendar.get(Calendar.DATE)
+    dayOfMonth += "/" + (calendar.get(Calendar.MONTH) + 1)
+
+    val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK).getDay()
+
+    return DayModel(dayOfWeek, dayOfMonth)
+}
+
+fun Int.getDay(): String {
+    return when (this) {
+        Calendar.SUNDAY -> "Sun"
+        Calendar.MONDAY -> "Mon"
+        Calendar.TUESDAY -> "Tue"
+        Calendar.WEDNESDAY -> "Wed"
+        Calendar.THURSDAY -> "Thu"
+        Calendar.FRIDAY -> "Fri"
+        Calendar.SATURDAY -> "Sat"
+        else -> {
+            return ""
+        }
+    }
 }

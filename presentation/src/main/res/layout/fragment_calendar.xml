@@ -35,12 +35,17 @@
             android:id="@+id/recycler_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/defaultMargin"
+            android:paddingTop="@dimen/defaultMargin"
+            android:paddingEnd="@dimen/defaultMargin"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:background="@color/purple_700"
             android:id="@+id/recycler_task"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:padding="@dimen/defaultMargin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recycler_day" />
 

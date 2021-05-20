@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         arguments: Bundle?
     ) {
         when (destination.id) {
-            R.id.homeFragment -> {
+            R.id.homeFragment, R.id.calendarFragment -> {
                 Animator.showBottomBar(binding.navView, onAnimationEnd = {})
             }
             else -> {
