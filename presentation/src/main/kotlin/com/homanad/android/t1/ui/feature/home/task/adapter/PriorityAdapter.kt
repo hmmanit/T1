@@ -29,7 +29,7 @@ class PriorityAdapter : RecyclerView.Adapter<PriorityAdapter.ItemHolder>() {
 
     inner class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val container = view.findViewById<MaterialCardView>(R.id.container)
+        private val container = view.findViewById<MaterialCardView>(R.id.container_priority)
         private val textTitle = view.findViewById<MaterialTextView>(R.id.text_title)
         private val iconSelected = view.findViewById<AppCompatImageView>(R.id.icon_selected)
 

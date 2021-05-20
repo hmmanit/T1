@@ -4,9 +4,11 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
+import com.homanad.android.common.components.recyclerView.util.DiffCallback
 import com.homanad.android.domain.entity.datamodel.TaskInBoard
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.getPriorityByPoint
@@ -17,6 +19,12 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ItemHolder>() {
     //TODO need to create a full information Model
     private var tasks = listOf<TaskInBoard>()
 
+    fun setTasks(tasks: List<TaskInBoard>) {
+        val diffCallback = DiffCallback(this.tasks, tasks)
+        this.tasks = tasks
+        DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this)
+    }
+
     inner class ItemHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val viewIndicator = view.findViewById<View>(R.id.view_indicator)
@@ -25,7 +33,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ItemHolder>() {
 
         private val layoutPriority = view.findViewById<View>(R.id.layout_priority)
         private val containerPriority =
-            layoutPriority.findViewById<MaterialCardView>(R.id.container)
+            layoutPriority.findViewById<MaterialCardView>(R.id.container_priority)
         private val textPriority = layoutPriority.findViewById<MaterialTextView>(R.id.text_title)
 
         private val layoutStatus = view.findViewById<View>(R.id.layout_status)
@@ -39,7 +47,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ItemHolder>() {
             textDescription.text = task.taskDescription
 
             val priority = getPriorityByPoint(task.priority)
-            containerPriority.setCardBackgroundColor(Color.parseColor(priority.color))
+            containerPriority?.setCardBackgroundColor(Color.parseColor(priority.color))
             textPriority.text = priority.title
 
             val status = getStatusByStatus(task.status)
