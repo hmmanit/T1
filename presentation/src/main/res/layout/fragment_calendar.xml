@@ -12,42 +12,43 @@
         android:layout_height="match_parent"
         tools:context=".ui.feature.calendar.CalendarFragment">
 
-        <!--        <com.google.android.material.tabs.TabLayout-->
-        <!--            android:id="@+id/tab_day"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            app:layout_constraintTop_toTopOf="parent"-->
-        <!--            app:tabGravity="center"-->
-        <!--            app:tabIndicator="@drawable/tab_home_indicator"-->
-        <!--            app:tabIndicatorAnimationMode="elastic"-->
-        <!--            app:tabIndicatorGravity="stretch"-->
-        <!--            app:tabMode="scrollable"-->
-        <!--            app:tabSelectedTextColor="@color/white" />-->
-
-        <!--        <androidx.viewpager2.widget.ViewPager2-->
-        <!--            android:id="@+id/page_day"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="0dp"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/tab_day" />-->
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_day"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_day"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/defaultMargin"
-            android:paddingTop="@dimen/defaultMargin"
-            android:paddingEnd="@dimen/defaultMargin"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabGravity="center"
+            app:tabIndicator="@drawable/tab_calendar_indicator"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorGravity="stretch"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/white" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.viewpager2.widget.ViewPager2
             android:background="@color/purple_700"
-            android:id="@+id/recycler_task"
+            android:id="@+id/page_day"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="@dimen/defaultMargin"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recycler_day" />
+            app:layout_constraintTop_toBottomOf="@id/tab_day" />
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/recycler_day"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:paddingStart="@dimen/defaultMargin"-->
+        <!--            android:paddingTop="@dimen/defaultMargin"-->
+        <!--            android:paddingEnd="@dimen/defaultMargin"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:background="@color/purple_700"-->
+        <!--            android:id="@+id/recycler_task"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:padding="@dimen/defaultMargin"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/recycler_day" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

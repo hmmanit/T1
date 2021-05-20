@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayoutMediator
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.t1.R
+import com.homanad.android.t1.common.toDayModel
 import com.homanad.android.t1.databinding.FragmentCalendarBinding
-import com.homanad.android.t1.ui.feature.calendar.adapter.CalendarAdapter
+import com.homanad.android.t1.ui.feature.calendar.adapter.CalendarPageAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,8 +19,8 @@ class CalendarFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCalendarBinding
 
-    private val calendarAdapter by lazy {
-        CalendarAdapter()
+    private val calendarPageAdapter by lazy {
+        CalendarPageAdapter(requireActivity())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,13 +46,17 @@ class CalendarFragment : BaseFragment() {
 
     override fun updateUI() {
         with(binding) {
-            recyclerDay.run {
-                adapter = calendarAdapter
-                layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                post {
-                    smoothScrollToPosition(calendarAdapter.getSelectedPosition())
-                }
+            pageDay.run {
+                adapter = calendarPageAdapter
+                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+
+                })
+                setCurrentItem(10, true)
             }
+            TabLayoutMediator(tabDay, pageDay) { tab, position ->
+                val dayModel = calendarPageAdapter.days[position].toDayModel()
+                tab.text = dayModel.dayOfWeek + "\n" + dayModel.dayOfMonth
+            }.attach()
         }
     }
 
