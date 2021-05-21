@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.homanad.android.common.components.recyclerView.util.DiffCallback
 import com.homanad.android.domain.entity.datamodel.TaskInBoard
 import com.homanad.android.t1.R
+import com.homanad.android.t1.common.toDateTimeWithNewLine
 
 class HomeTaskAdapter : RecyclerView.Adapter<HomeTaskAdapter.ItemHolder>() {
 
@@ -32,8 +33,8 @@ class HomeTaskAdapter : RecyclerView.Adapter<HomeTaskAdapter.ItemHolder>() {
         fun bind(task: TaskInBoard) {
             textBoardName.text = task.boardTitle
             textTaskName.text = task.taskTitle
-            textStartTime.text = task.startTime.toString()
-            textEndTime.text = task.endTime.toString()
+            textStartTime.text = task.startTime.toDateTimeWithNewLine()
+            textEndTime.text = task.endTime.toDateTimeWithNewLine()
         }
     }
 

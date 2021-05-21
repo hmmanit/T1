@@ -13,6 +13,7 @@ import com.homanad.android.domain.entity.datamodel.TaskInBoard
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.getPriorityByPoint
 import com.homanad.android.t1.common.getStatusByStatus
+import com.homanad.android.t1.common.toDateTimeWithNewLine
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ItemHolder>() {
 
@@ -54,7 +55,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ItemHolder>() {
             iconColor.setCardBackgroundColor(Color.parseColor(status.color))
             textStatus.text = status.title
 
-            textStartTime.text = task.startTime.toString()
+            textStartTime.text = task.startTime.toDateTimeWithNewLine()
         }
     }
 

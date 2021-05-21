@@ -79,6 +79,26 @@ fun getDateString(timestamp: Long): String {
     return datetime
 }
 
+fun Long.toDateTimeWithNewLine(): String {
+    val calendar: Calendar = GregorianCalendar()
+    calendar.timeInMillis = this
+    var datetime = ""
+    if (calendar.get(Calendar.DATE) < 10) datetime += '0'
+    datetime += calendar.get(Calendar.DATE)
+    datetime += "/"
+    if (calendar.get(Calendar.MONTH) < 9) datetime += '0'
+    datetime += calendar.get(Calendar.MONTH) + 1
+    datetime += "/"
+    datetime += calendar.get(Calendar.YEAR)
+    datetime += "\n"
+    if (calendar.get(Calendar.HOUR_OF_DAY) < 10) datetime += '0'
+    datetime += calendar.get(Calendar.HOUR_OF_DAY)
+    datetime += ":"
+    if (calendar.get(Calendar.MINUTE) < 10) datetime += '0'
+    datetime += calendar.get(Calendar.MINUTE)
+    return datetime
+}
+
 fun Long.toDayModel(): DayModel {
     val calendar: Calendar = GregorianCalendar()
     calendar.timeInMillis = this
