@@ -209,7 +209,7 @@ class CreateOrEditTaskFragment : BaseFragment() {
                         taskTitle,
                         taskDescription,
                         priorityAdapter.getSelectedPriorityPoint(),
-                        "#ff0000",
+                        colorAdapter.getSelectedColor(),
                         statusAdapter.getItem(spinnerStatus.selectedItemPosition).status,
                         1,
                         1,
