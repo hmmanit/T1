@@ -228,8 +228,8 @@ class CreateOrEditTaskFragment : BaseFragment() {
                         priorityAdapter.getSelectedPriorityPoint(),
                         colorAdapter.getSelectedColor(),
                         statusAdapter.getItem(spinnerStatus.selectedItemPosition).status,
-                        1,
-                        1,
+                        startCalendar.timeInMillis,
+                        endCalendar.timeInMillis,
                         listOf()
                     )
                 homeViewModel.createTask(task)
