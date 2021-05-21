@@ -7,6 +7,7 @@ import com.homanad.android.domain.entity.Task
 import com.homanad.android.domain.usecase.board.CreateBoardUseCase
 import com.homanad.android.domain.usecase.boardAndTasks.GetAllBoardAndTasksUseCase
 import com.homanad.android.domain.usecase.task.CreateTaskUseCase
+import com.homanad.android.domain.usecase.task.GetTaskInDateUseCase
 import com.homanad.android.domain.usecase.taskInBoard.GetAllTaskInBoardUseCase
 import com.homanad.android.t1.ui.feature.home.state.HomeState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +22,8 @@ class HomeViewModel @Inject constructor(
     private val createTaskUseCase: CreateTaskUseCase,
     private val createBoardUseCase: CreateBoardUseCase,
     private val getAllBoardAndTasksUseCase: GetAllBoardAndTasksUseCase,
-    private val getAllTaskInBoardUseCase: GetAllTaskInBoardUseCase
+    private val getAllTaskInBoardUseCase: GetAllTaskInBoardUseCase,
+    private val getTasksInDateUseCase: GetTaskInDateUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<HomeState>(HomeState.Idle)
@@ -71,6 +73,20 @@ class HomeViewModel @Inject constructor(
             _state.value = HomeState.Loading
             _state.value = try {
                 HomeState.TaskInBoardsReturned(getAllTaskInBoardUseCase())
+            } catch (e: Exception) {
+                HomeState.Error("Can't get Task in Boards")
+            }
+        }
+    }
+
+    fun getTasksInDate(date: Long) {
+        viewModelScope.launch {
+//            getAllTaskInBoardUseCase().forEach {
+////                Log.d("aaaaaaaaaaaaa2", it.toString())
+//            }
+            _state.value = HomeState.Loading
+            _state.value = try {
+                HomeState.TasksInDateReturned(getTasksInDateUseCase(date))
             } catch (e: Exception) {
                 HomeState.Error("Can't get Task in Boards")
             }

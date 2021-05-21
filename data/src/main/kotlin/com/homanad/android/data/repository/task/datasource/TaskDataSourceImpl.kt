@@ -1,5 +1,7 @@
 package com.homanad.android.data.repository.task.datasource
 
+import com.homanad.android.data.common.getEndOfToday
+import com.homanad.android.data.common.getStartOfToday
 import com.homanad.android.data.db.dao.TaskDAO
 import com.homanad.android.data.mapper.toTask
 import com.homanad.android.data.mapper.toTaskEntity
@@ -28,5 +30,11 @@ class TaskDataSourceImpl @Inject constructor(private val taskDAO: TaskDAO) : Tas
 
     override suspend fun getAllTaskInBoardUseCase(): List<TaskInBoard> {
         return taskDAO.getTaskInBoards().map { it.toTaskInBoard() }
+    }
+
+    override suspend fun getTasksInDate(millis: Long): List<TaskInBoard> {
+        val start = millis.getStartOfToday()
+        val end = millis.getEndOfToday()
+        return taskDAO.getTasksInDate(start, end).map { it.toTaskInBoard() }
     }
 }

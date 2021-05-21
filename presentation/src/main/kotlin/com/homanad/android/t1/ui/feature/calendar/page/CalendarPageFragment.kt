@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.t1.R
+import com.homanad.android.t1.ui.feature.home.vm.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CalendarPageFragment(private val timeInMillis: Long) : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

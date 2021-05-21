@@ -29,4 +29,8 @@ class TaskRepositoryImpl @Inject constructor(
     override suspend fun getAllTaskInBoardUseCase(): List<TaskInBoard> {
         return taskDataSource.getAllTaskInBoardUseCase()
     }
+
+    override suspend fun getTasksInDate(millis: Long): List<TaskInBoard> {
+        return taskDataSource.getTasksInDate(millis)
+    }
 }

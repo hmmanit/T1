@@ -5,6 +5,7 @@ import com.homanad.android.domain.repository.TaskRepository
 import com.homanad.android.domain.usecase.board.CreateBoardUseCase
 import com.homanad.android.domain.usecase.boardAndTasks.GetAllBoardAndTasksUseCase
 import com.homanad.android.domain.usecase.task.CreateTaskUseCase
+import com.homanad.android.domain.usecase.task.GetTaskInDateUseCase
 import com.homanad.android.domain.usecase.taskInBoard.GetAllTaskInBoardUseCase
 import dagger.Module
 import dagger.Provides
@@ -29,4 +30,8 @@ object UseCaseModule {
     @Provides
     fun provideGetAllTaskInBoardUseCase(taskRepository: TaskRepository) =
         GetAllTaskInBoardUseCase(taskRepository)
+
+    @Provides
+    fun provideGetTasksInDateUseCase(taskRepository: TaskRepository) =
+        GetTaskInDateUseCase(taskRepository)
 }

@@ -9,4 +9,5 @@ interface TaskRepository {
     suspend fun deleteTask(task: Task): Int
     suspend fun getTasks(): List<Task>
     suspend fun getAllTaskInBoardUseCase(): List<TaskInBoard>
+    suspend fun getTasksInDate(millis: Long): List<TaskInBoard>
 }

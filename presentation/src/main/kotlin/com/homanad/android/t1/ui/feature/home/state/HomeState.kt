@@ -12,4 +12,5 @@ sealed class HomeState {
     data class BoardCreated(val boardId: Long) : HomeState()
     data class TaskInBoardsReturned(val taskInBoards: List<TaskInBoard>) : HomeState()
     data class BoardAndTasksReturned(val boardAndTasks: List<BoardAndTasks>) : HomeState()
+    data class TasksInDateReturned(val tasksInDate: List<TaskInBoard>) : HomeState()
 }
