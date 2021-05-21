@@ -12,4 +12,5 @@
     <string name="status">Status</string>
     <string name="board">Board</string>
     <string name="create">Create</string>
+    <string name="daily">Daily</string>
 </resources>
