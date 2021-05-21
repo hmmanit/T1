@@ -227,10 +227,18 @@
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginTop="@dimen/smallMargin"
-                        app:layout_constraintBottom_toTopOf="@id/button_create"
+                        app:layout_constraintBottom_toTopOf="@id/layout_color_selection"
                         app:layout_constraintEnd_toEndOf="@id/spinner_status"
                         app:layout_constraintStart_toStartOf="@id/text_board"
                         app:layout_constraintTop_toBottomOf="@id/text_board" />
+
+                    <include
+                        android:id="@+id/layout_color_selection"
+                        layout="@layout/layout_color_selection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@id/button_create"
+                        app:layout_constraintTop_toBottomOf="@id/recycler_board" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button_create"
@@ -241,6 +249,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@id/recycler_board"
                         app:layout_constraintStart_toStartOf="@id/recycler_board"
+                        app:layout_constraintTop_toBottomOf="@id/layout_color_selection"
                         app:shapeAppearance="@style/ShapeAppearance.RoundedButton" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

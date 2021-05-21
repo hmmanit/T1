@@ -26,6 +26,7 @@ import com.homanad.android.t1.common.END_TIME_OF_THE_DAY
 import com.homanad.android.t1.common.START_TIME_OF_THE_DAY
 import com.homanad.android.t1.common.getDateString
 import com.homanad.android.t1.databinding.FragmentCreateOrEditTaskBinding
+import com.homanad.android.t1.ui.common.ColorAdapter
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeBoardAdapter
 import com.homanad.android.t1.ui.feature.home.state.HomeState
 import com.homanad.android.t1.ui.feature.home.task.adapter.PriorityAdapter
@@ -51,6 +52,10 @@ class CreateOrEditTaskFragment : BaseFragment() {
 
     private val homeBoardAdapter by lazy {
         HomeBoardAdapter()
+    }
+
+    private val colorAdapter by lazy {
+        ColorAdapter(requireContext())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -184,6 +189,12 @@ class CreateOrEditTaskFragment : BaseFragment() {
             recyclerBoard.run {
                 adapter = homeBoardAdapter
                 addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            }
+
+            layoutColorSelection.recyclerViewColors.run {
+                adapter = colorAdapter
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }

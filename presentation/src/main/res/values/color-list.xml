@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="lightColors">
+        <item>#EAE6E6</item>
+        <!-- https://material.io/design/color/the-color-system.html#tools-for-picking-colors -->
+        <!-- 100 for light -->
+        <item>#FFCDD2</item>
+        <item>#F8BBD0</item>
+        <item>#E1BEE7</item>
+        <item>#D1C4E9</item>
+        <item>#C5CAE9</item>
+        <item>#BBDEFB</item>
+        <item>#B3E5FC</item>
+        <item>#B2EBF2</item>
+        <item>#B2DFDB</item>
+        <item>#C8E6C9</item>
+        <item>#DCEDC8</item>
+        <item>#F0F4C3</item>
+        <item>#FFF9C4</item>
+        <item>#FFECB3</item>
+        <item>#FFE0B2</item>
+        <item>#FFCCBC</item>
+        <item>#D7CCC8</item>
+        <item>#F5F5F5</item>
+        <item>#CFD8DC</item>
+    </array>
+
+</resources>

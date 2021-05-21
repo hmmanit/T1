@@ -20,4 +20,9 @@
     <dimen name="homeTaskHeight">@dimen/dimen_180adp</dimen>
     <dimen name="toolbarHeight">@dimen/dimen_48adp</dimen>
 
+    <dimen name="colorListHeight">@dimen/dimen_48adp</dimen>
+
+    <dimen name="colorImageSize">@dimen/dimen_35adp</dimen>
+    <dimen name="colorImageStrokeSize">@dimen/dimen_2adp</dimen>
+
 </resources>
