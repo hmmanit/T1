@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.Slide
 import com.google.android.material.transition.MaterialContainerTransform
 import com.homanad.android.common.components.ui.BaseFragment
@@ -17,6 +18,7 @@ import com.homanad.android.common.extensions.context.themeColor
 import com.homanad.android.domain.entity.Board
 import com.homanad.android.t1.R
 import com.homanad.android.t1.databinding.FragmentCreateOrEditBoardBinding
+import com.homanad.android.t1.ui.common.ColorAdapter
 import com.homanad.android.t1.ui.feature.home.state.HomeState
 import com.homanad.android.t1.ui.feature.home.vm.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,10 @@ class CreateOrEditBoardFragment : BaseFragment() {
     private lateinit var binding: FragmentCreateOrEditBoardBinding
 
     private val homeViewModel: HomeViewModel by viewModels()
+
+    private val colorAdapter by lazy {
+        ColorAdapter(requireContext())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +67,11 @@ class CreateOrEditBoardFragment : BaseFragment() {
 
                 val board = Board(0, title, description, "")
                 homeViewModel.createBoard(board)
+            }
+            layoutColorSelection.recyclerViewColors.run {
+                adapter = colorAdapter
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             }
         }
     }
