@@ -1,6 +1,7 @@
 package com.homanad.android.t1.ui.feature.calendar
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,16 @@ class CalendarFragment : BaseFragment() {
             pageDay.run {
                 adapter = calendarPageAdapter
                 registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        if (position == 0){
+                            calendarPageAdapter.addPrevious()
+                            pageDay.post {
+                                setCurrentItem(10, false)
+                            }
+                        }
+                        else if (position == calendarPageAdapter.itemCount - 1) calendarPageAdapter.addNext()
+                    }
                 })
                 setCurrentItem(10, true)
             }

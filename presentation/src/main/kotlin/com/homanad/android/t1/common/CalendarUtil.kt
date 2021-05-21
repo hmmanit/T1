@@ -8,7 +8,7 @@ const val ONE_DAY_IN_MILLIS = 86400000
 const val START_TIME_OF_THE_DAY = "00:00"
 const val END_TIME_OF_THE_DAY = "23:59"
 
-fun generateFromToday(): List<Long> {
+fun generateFromToday(): MutableList<Long> {
     val today = System.currentTimeMillis()
     val days = mutableListOf(today)
 
