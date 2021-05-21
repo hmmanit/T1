@@ -16,7 +16,7 @@ import com.homanad.android.t1.model.PriorityModel
 
 class PriorityAdapter : RecyclerView.Adapter<PriorityAdapter.ItemHolder>() {
 
-    private var selectedPos = -1
+    private var selectedPos = 0
 
     private fun setSelection(position: Int) {
         val temp = selectedPos
