@@ -7,34 +7,32 @@
 
     </data>
 
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/motion_home"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutDescription="@xml/collapse_home"
         tools:context=".ui.feature.home.HomeFragment">
 
         <com.google.android.material.textview.MaterialTextView
+            app:layout_constraintBottom_toTopOf="@id/second_greeting"
             android:id="@+id/first_greeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/defaultMargin"
+            android:layout_margin="@dimen/defaultMargin"
             android:text="Good Morning"
             android:textColor="#000"
             android:textSize="@dimen/dimen_16adp"
-            app:layout_constraintBottom_toTopOf="@id/second_greeting"
-            app:layout_constraintStart_toStartOf="@id/tab_layout"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textview.MaterialTextView
+            app:layout_constraintBottom_toTopOf="@id/tab_layout"
             android:id="@+id/second_greeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/smallMargin"
             android:text="Have a nice day!"
             android:textSize="@dimen/dimen_16adp"
-            app:layout_constraintBottom_toTopOf="@id/tab_layout"
-            app:layout_constraintStart_toStartOf="@id/tab_layout"
+            app:layout_constraintStart_toStartOf="@id/first_greeting"
             app:layout_constraintTop_toBottomOf="@id/first_greeting" />
 
         <com.google.android.material.tabs.TabLayout
@@ -43,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/defaultMargin"
             android:layout_marginTop="@dimen/largeMargin"
-            app:layout_constraintBottom_toTopOf="@id/view_pager"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/second_greeting"
             app:tabGravity="center"
@@ -51,6 +48,7 @@
             app:tabIndicatorAnimationMode="elastic"
             app:tabIndicatorGravity="stretch"
             app:tabMode="fixed"
+            app:layout_constraintBottom_toTopOf="@id/view_pager"
             app:tabSelectedTextColor="@color/white" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -63,11 +61,11 @@
             app:layout_constraintTop_toTopOf="@id/tab_layout" />
 
         <androidx.viewpager2.widget.ViewPager2
+            app:layout_constraintBottom_toTopOf="parent"
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="@dimen/homeTaskHeight"
-            android:padding="@dimen/smallMargin"
-            app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+            android:padding="@dimen/smallMargin" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/container_today"
@@ -116,5 +114,5 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

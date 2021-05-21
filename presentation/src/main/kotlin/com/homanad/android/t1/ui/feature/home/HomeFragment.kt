@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -21,6 +22,7 @@ import com.homanad.android.common.utilities.getReturnMaterialSharedAxis
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
 import com.homanad.android.t1.databinding.FragmentHomeBinding
+import com.homanad.android.t1.ui.MainActivity
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeViewPagerAdapter
 import com.homanad.android.t1.ui.feature.home.page.type.Page
 import com.homanad.android.t1.ui.feature.home.state.HomeState
@@ -84,6 +86,30 @@ class HomeFragment : BaseFragment() {
                 layoutManager = LinearLayoutManager(requireContext())
                 addItemDecoration(SpaceItemDecoration(BASE_SPACE_ITEM_DECORATION))
             }
+            motionHome.addTransitionListener(object : MotionLayout.TransitionListener {
+                override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+
+                }
+
+                override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
+
+                }
+
+                override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
+                    if (p1 == R.layout.fragment_home_end) {
+                        (requireActivity() as MainActivity).hideNavBar()
+                    } else (requireActivity() as MainActivity).showNavBar()
+                }
+
+                override fun onTransitionTrigger(
+                    p0: MotionLayout?,
+                    p1: Int,
+                    p2: Boolean,
+                    p3: Float
+                ) {
+
+                }
+            })
         }
     }
 

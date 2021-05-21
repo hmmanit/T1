@@ -81,11 +81,19 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
     ) {
         when (destination.id) {
             R.id.homeFragment, R.id.calendarFragment -> {
-                Animator.showBottomBar(binding.navView, onAnimationEnd = {})
+                showNavBar()
             }
             else -> {
-                Animator.hideBottomBar(binding.navView, onAnimationEnd = {})
+                hideNavBar()
             }
         }
+    }
+
+    fun showNavBar() {
+        Animator.showBottomBar(binding.navView, onAnimationEnd = {})
+    }
+
+    fun hideNavBar() {
+        Animator.hideBottomBar(binding.navView, onAnimationEnd = {})
     }
 }
