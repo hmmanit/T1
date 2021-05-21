@@ -22,6 +22,8 @@ import com.homanad.android.common.extensions.context.themeColor
 import com.homanad.android.domain.entity.Task
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
+import com.homanad.android.t1.common.END_TIME_OF_THE_DAY
+import com.homanad.android.t1.common.START_TIME_OF_THE_DAY
 import com.homanad.android.t1.common.getDateString
 import com.homanad.android.t1.databinding.FragmentCreateOrEditTaskBinding
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeBoardAdapter
@@ -32,7 +34,6 @@ import com.homanad.android.t1.ui.feature.home.vm.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.util.*
 
 @AndroidEntryPoint
 class CreateOrEditTaskFragment : BaseFragment() {
@@ -128,9 +129,17 @@ class CreateOrEditTaskFragment : BaseFragment() {
 
     override fun updateUI() {
         with(binding) {
+            switchDaily.setOnCheckedChangeListener { _, isChecked ->
+                inputStartDate.isEnabled = !isChecked
+                inputEndDate.isEnabled = !isChecked
+            }
+
             textStartDate.setOnClickListener {
                 datePicker.addOnPositiveButtonClickListener {
                     textStartDate.setText(getDateString(it))
+                    if (textStartTime.text.isNullOrEmpty()) textStartTime.setText(
+                        START_TIME_OF_THE_DAY
+                    )
                 }
                 datePicker.show(childFragmentManager, TAG_DATE_PICKER)
             }
@@ -138,6 +147,9 @@ class CreateOrEditTaskFragment : BaseFragment() {
             textEndDate.setOnClickListener {
                 datePicker.addOnPositiveButtonClickListener {
                     textEndDate.setText(getDateString(it))
+                    if (textEndTime.text.isNullOrEmpty()) textEndTime.setText(
+                        END_TIME_OF_THE_DAY
+                    )
                 }
                 datePicker.show(childFragmentManager, TAG_DATE_PICKER)
             }
