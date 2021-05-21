@@ -38,12 +38,34 @@ fun MutableList<Long>.addNextTenDays(currentDayInMillis: Long) {
     }
 }
 
+fun MutableList<Long>.addNumberOfNextDays(number: Int, currentDayInMillis: Long) {
+    var count = 0
+
+    var today = currentDayInMillis
+    while (count < number) {
+        today += ONE_DAY_IN_MILLIS
+        count++
+        add(today)
+    }
+}
+
 fun MutableList<Long>.addPreviousTenDays(currentDayInMillis: Long) {
     val mSize = size
 
     var today = currentDayInMillis
     while (size < mSize + 10) {
         today -= ONE_DAY_IN_MILLIS
+        add(0, today)
+    }
+}
+
+fun MutableList<Long>.addNumberOfPreviousDays(number: Int, currentDayInMillis: Long) {
+    var count = 0
+
+    var today = currentDayInMillis
+    while (count < number) {
+        today -= ONE_DAY_IN_MILLIS
+        count++
         add(0, today)
     }
 }

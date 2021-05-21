@@ -52,16 +52,19 @@ class CalendarFragment : BaseFragment() {
                 registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
                         super.onPageSelected(position)
-                        if (position == 0){
-                            calendarPageAdapter.addPrevious()
-                            pageDay.post {
-                                setCurrentItem(10, false)
-                            }
-                        }
-                        else if (position == calendarPageAdapter.itemCount - 1) calendarPageAdapter.addNext()
+                        Log.d("aaaaaaaaaaaaa", position.toString())
+
+                        if (position == 0) {
+                            calendarPageAdapter.addPrevious(CalendarPageAdapter.DEFAULT_NUMBER_OF_DAYS)
+                            pageDay.postDelayed({
+                                setCurrentItem(CalendarPageAdapter.DEFAULT_NUMBER_OF_DAYS, false)
+                            }, 100)
+                        } else if (position == calendarPageAdapter.itemCount - 1) calendarPageAdapter.addNext(
+                            CalendarPageAdapter.DEFAULT_NUMBER_OF_DAYS
+                        )
                     }
                 })
-                setCurrentItem(10, true)
+                setCurrentItem(calendarPageAdapter.itemCount / 2, true)
             }
             TabLayoutMediator(tabDay, pageDay) { tab, position ->
                 val dayModel = calendarPageAdapter.days[position].toDayModel()
