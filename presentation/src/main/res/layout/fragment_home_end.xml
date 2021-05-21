@@ -67,6 +67,16 @@
             android:layout_height="@dimen/homeTaskHeight"
             android:padding="@dimen/smallMargin" />
 
+        <View
+            android:id="@+id/collapsed_view"
+            android:background="#cce7ff"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/container_today"
+            app:layout_constraintEnd_toEndOf="@id/container_today"
+            app:layout_constraintStart_toStartOf="@id/container_today"
+            app:layout_constraintTop_toTopOf="@id/container_today" />
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/container_today"
             android:layout_width="match_parent"

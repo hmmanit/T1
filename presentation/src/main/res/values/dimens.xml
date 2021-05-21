@@ -5,6 +5,7 @@
     <dimen name="defaultMargin">@dimen/dimen_8adp</dimen>
     <dimen name="mediumMargin">@dimen/dimen_12adp</dimen>
     <dimen name="largeMargin">@dimen/dimen_16adp</dimen>
+    <dimen name="xLargeMargin">@dimen/dimen_32adp</dimen>
 
     <dimen name="smallCornerRadius">@dimen/dimen_4adp</dimen>
     <dimen name="defaultCornerRadius">@dimen/dimen_8adp</dimen>
