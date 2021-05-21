@@ -6,7 +6,7 @@ data class Task(
     val taskTitle: String = "",
     val taskDescription: String = "",
     val priority: Int = -1,
-    val themeColor: String = "",
+    val taskThemeColor: String = "",
     val status: Int = -1,
     val startTime: Long = -1,
     val endTime: Long = -1,

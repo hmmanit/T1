@@ -9,5 +9,6 @@ data class BoardEntity(
     val boardId: Long = -1,
     val boardTitle: String = "",
     val boardDescription: String = "",
+    val boardThemeColor: String = "",
     val boardImage: String = ""
 )

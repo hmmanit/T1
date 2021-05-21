@@ -65,7 +65,7 @@ class CreateOrEditBoardFragment : BaseFragment() {
                 val title = textTitle.text.toString()
                 val description = textDescription.text.toString()
 
-                val board = Board(0, title, description, "")
+                val board = Board(0, title, description, colorAdapter.getSelectedColor(), "")
                 homeViewModel.createBoard(board)
             }
             layoutColorSelection.recyclerViewColors.run {

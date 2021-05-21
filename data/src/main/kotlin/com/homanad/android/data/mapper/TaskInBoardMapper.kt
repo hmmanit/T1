@@ -9,7 +9,7 @@ fun TaskInBoardEntity.toTaskInBoard() = TaskInBoard(
     taskEntity.taskTitle,
     taskEntity.taskDescription,
     taskEntity.priority,
-    taskEntity.themeColor,
+    taskEntity.taskThemeColor,
     taskEntity.status,
     taskEntity.startTime,
     taskEntity.endTime,

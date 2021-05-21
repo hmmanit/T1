@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "1124fb6b0dda4d16279bc7bbb179d366",
+    "identityHash": "fb47394ea57fc9a71ad958e9c104833f",
     "entities": [
       {
         "tableName": "BoardEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`boardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `boardTitle` TEXT NOT NULL, `boardDescription` TEXT NOT NULL, `boardImage` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`boardId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `boardTitle` TEXT NOT NULL, `boardDescription` TEXT NOT NULL, `boardThemeColor` TEXT NOT NULL, `boardImage` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "boardId",
@@ -23,6 +23,12 @@
           {
             "fieldPath": "boardDescription",
             "columnName": "boardDescription",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "boardThemeColor",
+            "columnName": "boardThemeColor",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -44,7 +50,7 @@
       },
       {
         "tableName": "TaskEntity",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`taskId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `boardId` INTEGER NOT NULL, `taskTitle` TEXT NOT NULL, `taskDescription` TEXT NOT NULL, `priority` INTEGER NOT NULL, `themeColor` TEXT NOT NULL, `status` INTEGER NOT NULL, `startTime` INTEGER NOT NULL, `endTime` INTEGER NOT NULL, `images` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`taskId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `boardId` INTEGER NOT NULL, `taskTitle` TEXT NOT NULL, `taskDescription` TEXT NOT NULL, `priority` INTEGER NOT NULL, `taskThemeColor` TEXT NOT NULL, `status` INTEGER NOT NULL, `startTime` INTEGER NOT NULL, `endTime` INTEGER NOT NULL, `images` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "taskId",
@@ -77,8 +83,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "themeColor",
-            "columnName": "themeColor",
+            "fieldPath": "taskThemeColor",
+            "columnName": "taskThemeColor",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -120,7 +126,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1124fb6b0dda4d16279bc7bbb179d366')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fb47394ea57fc9a71ad958e9c104833f')"
     ]
   }
 }
