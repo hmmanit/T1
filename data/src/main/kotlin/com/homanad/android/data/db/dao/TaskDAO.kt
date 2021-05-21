@@ -15,6 +15,6 @@ abstract class TaskDAO : BaseDao<TaskEntity> {
     @Query("SELECT * FROM TaskEntity")
     abstract suspend fun getTaskInBoards(): List<TaskInBoardEntity>
 
-    @Query("SELECT * FROM TaskEntity WHERE startTime > :start AND endTime < :end")
+    @Query("SELECT * FROM TaskEntity WHERE startTime >= :start AND startTime <= :end")
     abstract suspend fun getTasksInDate(start: Long, end: Long): List<TaskInBoardEntity>
 }
