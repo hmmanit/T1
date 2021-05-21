@@ -126,3 +126,13 @@ fun Long.getEndOfToday(): Long {
     Log.d("aaaaaaaaaaaaaa", calendar.timeInMillis.toString())
     return calendar.timeInMillis
 }
+
+fun Calendar.setDateTime(time: Long, hour: Int, minute: Int) {
+    timeInMillis = time
+    setTime(hour, minute)
+}
+
+fun Calendar.setTime(hour: Int, minute: Int) {
+    set(Calendar.HOUR_OF_DAY, hour)
+    set(Calendar.MINUTE, minute)
+}

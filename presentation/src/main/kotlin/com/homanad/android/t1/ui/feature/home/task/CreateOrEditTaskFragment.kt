@@ -2,6 +2,7 @@ package com.homanad.android.t1.ui.feature.home.task
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -21,10 +22,7 @@ import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.common.extensions.context.themeColor
 import com.homanad.android.domain.entity.Task
 import com.homanad.android.t1.R
-import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
-import com.homanad.android.t1.common.END_TIME_OF_THE_DAY
-import com.homanad.android.t1.common.START_TIME_OF_THE_DAY
-import com.homanad.android.t1.common.getDateString
+import com.homanad.android.t1.common.*
 import com.homanad.android.t1.databinding.FragmentCreateOrEditTaskBinding
 import com.homanad.android.t1.ui.common.ColorAdapter
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeBoardAdapter
@@ -35,12 +33,16 @@ import com.homanad.android.t1.ui.feature.home.vm.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.util.*
 
 @AndroidEntryPoint
 class CreateOrEditTaskFragment : BaseFragment() {
 
     private lateinit var binding: FragmentCreateOrEditTaskBinding
     private val homeViewModel: HomeViewModel by viewModels()
+
+    private val startCalendar = GregorianCalendar()
+    private val endCalendar = GregorianCalendar()
 
     private val priorityAdapter by lazy {
         PriorityAdapter()
@@ -116,8 +118,15 @@ class CreateOrEditTaskFragment : BaseFragment() {
         homeViewModel.getAllBoardAndTasks()
     }
 
-    private val datePicker by lazy {
-        MaterialDatePicker.Builder.datePicker()
+//    private val datePicker by lazy {
+//        MaterialDatePicker.Builder.datePicker()
+//            .setTitleText("Select date")
+//            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+//            .build()
+//    }
+
+    private fun getDatePicker(): MaterialDatePicker<Long> {
+        return MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select date")
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
@@ -140,29 +149,34 @@ class CreateOrEditTaskFragment : BaseFragment() {
             }
 
             textStartDate.setOnClickListener {
-                datePicker.addOnPositiveButtonClickListener {
+                val picker = getDatePicker()
+                picker.addOnPositiveButtonClickListener {
                     textStartDate.setText(getDateString(it))
+                    startCalendar.setDateTime(it, 0, 0)
                     if (textStartTime.text.isNullOrEmpty()) textStartTime.setText(
                         START_TIME_OF_THE_DAY
                     )
                 }
-                datePicker.show(childFragmentManager, TAG_DATE_PICKER)
+                picker.show(childFragmentManager, TAG_DATE_PICKER)
             }
 
             textEndDate.setOnClickListener {
-                datePicker.addOnPositiveButtonClickListener {
+                val picker = getDatePicker()
+                picker.addOnPositiveButtonClickListener {
                     textEndDate.setText(getDateString(it))
+                    endCalendar.setDateTime(it, 23, 59)
                     if (textEndTime.text.isNullOrEmpty()) textEndTime.setText(
                         END_TIME_OF_THE_DAY
                     )
                 }
-                datePicker.show(childFragmentManager, TAG_DATE_PICKER)
+                picker.show(childFragmentManager, TAG_DATE_PICKER)
             }
 
             textStartTime.setOnClickListener {
                 val picker = getTimePicker()
                 picker.addOnPositiveButtonClickListener {
                     textStartTime.setText("${picker.hour}:${picker.minute}")
+                    startCalendar.setTime(picker.hour, picker.minute)
                 }
                 picker.show(childFragmentManager, TAG_TIME_PICKER)
             }
@@ -171,6 +185,7 @@ class CreateOrEditTaskFragment : BaseFragment() {
                 val picker = getTimePicker()
                 picker.addOnPositiveButtonClickListener {
                     textEndTime.setText("${picker.hour}:${picker.minute}")
+                    endCalendar.setTime(picker.hour, picker.minute)
                 }
                 picker.show(childFragmentManager, TAG_TIME_PICKER)
             }
@@ -200,6 +215,8 @@ class CreateOrEditTaskFragment : BaseFragment() {
             }
 
             buttonCreate.setOnClickListener {
+                Log.d("aaaaaaaaaaaaaaaastart", startCalendar.timeInMillis.toString())
+                Log.d("aaaaaaaaaaaaaaaaend", endCalendar.timeInMillis.toString())
                 val taskTitle = textTitle.text.toString()
                 val taskDescription = textDescription.text.toString()
                 val task =
