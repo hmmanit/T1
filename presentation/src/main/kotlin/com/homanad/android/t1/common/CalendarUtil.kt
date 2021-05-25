@@ -151,9 +151,10 @@ fun Int.getDay(): String {
 fun Long.getStartOfToday(): Long {
     val calendar: Calendar = GregorianCalendar()
     calendar.timeInMillis = this
-    calendar.set(Calendar.HOUR_OF_DAY, 0);
-    calendar.set(Calendar.MINUTE, 0);
-    calendar.set(Calendar.SECOND, 0);
+    calendar.set(Calendar.HOUR_OF_DAY, 0)
+    calendar.set(Calendar.MINUTE, 0)
+    calendar.set(Calendar.SECOND, 0)
+    calendar.set(Calendar.MILLISECOND, 0)
     Log.d("aaaaaaaaaaaaaa", calendar.timeInMillis.toString())
     return calendar.timeInMillis
 }

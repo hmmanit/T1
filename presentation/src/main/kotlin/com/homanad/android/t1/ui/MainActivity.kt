@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), NavController.OnDestinationChangedList
         arguments: Bundle?
     ) {
         when (destination.id) {
-            R.id.homeFragment, R.id.calendarFragment -> {
+            R.id.homeFragment, R.id.calendarFragment, R.id.statisticFragment, R.id.settingFragment -> {
                 showNavBar()
             }
             else -> {
