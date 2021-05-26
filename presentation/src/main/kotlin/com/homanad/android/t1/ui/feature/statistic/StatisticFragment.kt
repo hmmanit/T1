@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.common.extensions.resource.asString
@@ -15,6 +16,7 @@ import com.homanad.android.domain.common.getDateMonthYear
 import com.homanad.android.t1.R
 import com.homanad.android.t1.databinding.FragmentStatisticBinding
 import com.homanad.android.t1.ui.common.MonthYearPickerDialog
+import com.homanad.android.t1.ui.feature.statistic.vm.StatisticViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -22,6 +24,8 @@ import java.util.*
 class StatisticFragment : BaseFragment() {
 
     private lateinit var binding: FragmentStatisticBinding
+
+    private val statisticViewModel: StatisticViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,10 +54,11 @@ class StatisticFragment : BaseFragment() {
                     R.id.select_date -> {
                         selectTime.run {
                             visible()
-                            selectTime.text = System.currentTimeMillis().getDateMonthYear(dd_space_MMM_space_yyyy)
+                            selectTime.text = statisticViewModel.dateInMillis.getDateMonthYear(dd_space_MMM_space_yyyy)
                             setOnClickListener {
                                 val picker = getDatePicker()
                                 picker.addOnPositiveButtonClickListener {
+                                    statisticViewModel.dateInMillis = it
                                     selectTime.text = it.getDateMonthYear(dd_space_MMM_space_yyyy)
                                 }
                                 picker.show(parentFragmentManager, "MaterialDatePicker")
@@ -77,15 +82,19 @@ class StatisticFragment : BaseFragment() {
                             val template = R.string.date_to_date.asString(requireContext())
                             selectTime.text = String.format(
                                 template,
-                                MaterialDatePicker.thisMonthInUtcMilliseconds()
+                                statisticViewModel.startDateInMillis
                                     .getDateMonthYear(dd_space_MMM_space_yyyy),
-                                MaterialDatePicker.todayInUtcMilliseconds()
+                                statisticViewModel.endDateInMillis
                                     .getDateMonthYear(dd_space_MMM_space_yyyy)
                             )
 
                             setOnClickListener {
                                 val picker = getDateRangePicker()
                                 picker.addOnPositiveButtonClickListener {
+                                    statisticViewModel.startDateInMillis =
+                                        it?.first ?: statisticViewModel.startDateInMillis
+                                    statisticViewModel.endDateInMillis =
+                                        it?.second ?: statisticViewModel.endDateInMillis
                                     selectTime.text = String.format(
                                         template,
                                         it.first?.getDateMonthYear(dd_space_MMM_space_yyyy),
@@ -104,7 +113,7 @@ class StatisticFragment : BaseFragment() {
     private fun getDatePicker(): MaterialDatePicker<Long> {
         return MaterialDatePicker.Builder.datePicker()
             .setTitleText("Select date")
-            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setSelection(statisticViewModel.dateInMillis)
             .build()
     }
 
@@ -120,10 +129,7 @@ class StatisticFragment : BaseFragment() {
         return MaterialDatePicker.Builder.dateRangePicker()
             .setTitleText("Select date")
             .setSelection(
-                androidx.core.util.Pair(
-                    MaterialDatePicker.thisMonthInUtcMilliseconds(),
-                    MaterialDatePicker.todayInUtcMilliseconds()
-                )
+                androidx.core.util.Pair(statisticViewModel.startDateInMillis, statisticViewModel.endDateInMillis)
             )
             .build()
     }
