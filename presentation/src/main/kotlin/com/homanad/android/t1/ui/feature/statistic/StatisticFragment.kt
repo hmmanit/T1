@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.homanad.android.common.components.ui.BaseFragment
+import com.homanad.android.common.extensions.resource.asString
 import com.homanad.android.common.extensions.view.gone
 import com.homanad.android.common.extensions.view.visible
 import com.homanad.android.domain.common.dd_space_MMM_space_yyyy
@@ -73,17 +74,23 @@ class StatisticFragment : BaseFragment() {
                     R.id.select_period -> {
                         selectTime.run {
                             visible()
-                            selectTime.text = MaterialDatePicker.thisMonthInUtcMilliseconds()
-                                .getDateMonthYear(dd_space_MMM_space_yyyy) + " - " +
-                                    MaterialDatePicker.todayInUtcMilliseconds()
-                                        .getDateMonthYear(dd_space_MMM_space_yyyy)
+                            val template = R.string.date_to_date.asString(requireContext())
+                            selectTime.text = String.format(
+                                template,
+                                MaterialDatePicker.thisMonthInUtcMilliseconds()
+                                    .getDateMonthYear(dd_space_MMM_space_yyyy),
+                                MaterialDatePicker.todayInUtcMilliseconds()
+                                    .getDateMonthYear(dd_space_MMM_space_yyyy)
+                            )
+
                             setOnClickListener {
                                 val picker = getDateRangePicker()
                                 picker.addOnPositiveButtonClickListener {
-                                    selectTime.text =
-                                        it.first?.getDateMonthYear(dd_space_MMM_space_yyyy) + " - " + it.second?.getDateMonthYear(
-                                            dd_space_MMM_space_yyyy
-                                        )
+                                    selectTime.text = String.format(
+                                        template,
+                                        it.first?.getDateMonthYear(dd_space_MMM_space_yyyy),
+                                        it.second?.getDateMonthYear(dd_space_MMM_space_yyyy)
+                                    )
                                 }
                                 picker.show(parentFragmentManager, "MaterialDatePicker")
                             }
