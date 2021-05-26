@@ -7,6 +7,8 @@ class StatisticViewModel : ViewModel() {
 
     var dateInMillis = MaterialDatePicker.todayInUtcMilliseconds()
 
+    var monthInMillis = MaterialDatePicker.thisMonthInUtcMilliseconds()
+
     var startDateInMillis = MaterialDatePicker.thisMonthInUtcMilliseconds()
     var endDateInMillis = MaterialDatePicker.todayInUtcMilliseconds()
 

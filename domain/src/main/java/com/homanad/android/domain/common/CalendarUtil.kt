@@ -12,6 +12,7 @@ const val dd_MMM_yyyy = "dd-MMM-yyyy"   // 14-Jul-2018
 const val dd_separate_MM_separate_yyyy = "dd/MM/yyyy"   // 14/07/2018
 const val MMM_space_dd_space_yyyy = "MMM dd yyyy"   // Jul 14 2018
 const val dd_space_MMM_space_yyyy = "dd MMM yyyy"   // 14 Jul 2018
+const val MMM_space_yyyy = "MMM yyyy"   // Jul 2018
 const val E_comma_MMM_space_dd_space_yyyy = "E, MMM dd yyyy"   // Sat, Jul 14 2018
 const val h_colon_mm_space_a = "h:mm a"   // 12:08 PM
 const val EEEE_coma_MMM_space_dd_comma_yyyy_space_HH_colon_mm_colon_ss_space_a =
@@ -208,7 +209,7 @@ fun Long.getDayOfWeek(): String {
     return calendar.get(Calendar.DAY_OF_WEEK).getDayOfWeek()
 }
 
-fun Long.getDateMonthYear(): String {
+fun Long.getDateTime(): String {
     val calendar: Calendar = GregorianCalendar()
     calendar.timeInMillis = this
     var dateMonthYear = ""
@@ -219,7 +220,20 @@ fun Long.getDateMonthYear(): String {
     return dateMonthYear
 }
 
-fun Long.getDateMonthYear(pattern: String): String {
+fun Long.getDateTime(pattern: String): String {
     val formatter = SimpleDateFormat(pattern, Locale.getDefault())
     return formatter.format(Date(this))
+}
+
+fun getTimeInMillis(year: Int, month: Int, dayOfMonth: Int): Long {
+    val calendar: Calendar = GregorianCalendar()
+    calendar.set(Calendar.YEAR, year)
+    calendar.set(Calendar.MONTH, month)
+    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+//    calendar.set(Calendar.HOUR_OF_DAY, 0)
+//    calendar.set(Calendar.MINUTE, 0)
+//    calendar.set(Calendar.SECOND, 0)
+//    calendar.set(Calendar.MILLISECOND, 0)
+    //optional
+    return calendar.timeInMillis
 }
