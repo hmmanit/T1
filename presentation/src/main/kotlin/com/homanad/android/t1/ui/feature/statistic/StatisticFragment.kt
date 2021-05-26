@@ -55,7 +55,7 @@ class StatisticFragment : BaseFragment() {
                                 picker.addOnPositiveButtonClickListener {
                                     selectTime.text = it.getDateMonthYear(dd_space_MMM_space_yyyy)
                                 }
-                                picker.show(childFragmentManager, "MaterialDatePicker")
+                                picker.show(parentFragmentManager, "MaterialDatePicker")
                             }
                         }
                     }
@@ -71,7 +71,23 @@ class StatisticFragment : BaseFragment() {
                         }
                     }
                     R.id.select_period -> {
-                        selectTime.visible()
+                        selectTime.run {
+                            visible()
+                            selectTime.text = MaterialDatePicker.thisMonthInUtcMilliseconds()
+                                .getDateMonthYear(dd_space_MMM_space_yyyy) + " - " +
+                                    MaterialDatePicker.todayInUtcMilliseconds()
+                                        .getDateMonthYear(dd_space_MMM_space_yyyy)
+                            setOnClickListener {
+                                val picker = getDateRangePicker()
+                                picker.addOnPositiveButtonClickListener {
+                                    selectTime.text =
+                                        it.first?.getDateMonthYear(dd_space_MMM_space_yyyy) + " - " + it.second?.getDateMonthYear(
+                                            dd_space_MMM_space_yyyy
+                                        )
+                                }
+                                picker.show(parentFragmentManager, "MaterialDatePicker")
+                            }
+                        }
                     }
                 }
             }
@@ -91,6 +107,18 @@ class StatisticFragment : BaseFragment() {
         return MonthYearPickerDialog(Date(System.currentTimeMillis())).apply {
             setListener(listener)
         }
+    }
+
+    private fun getDateRangePicker(): MaterialDatePicker<androidx.core.util.Pair<Long, Long>> {
+        return MaterialDatePicker.Builder.dateRangePicker()
+            .setTitleText("Select date")
+            .setSelection(
+                androidx.core.util.Pair(
+                    MaterialDatePicker.thisMonthInUtcMilliseconds(),
+                    MaterialDatePicker.todayInUtcMilliseconds()
+                )
+            )
+            .build()
     }
 
     companion object {
