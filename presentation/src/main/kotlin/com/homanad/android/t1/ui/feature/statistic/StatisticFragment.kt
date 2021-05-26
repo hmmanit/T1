@@ -1,7 +1,6 @@
 package com.homanad.android.t1.ui.feature.statistic
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,9 @@ import com.homanad.android.domain.common.dd_space_MMM_space_yyyy
 import com.homanad.android.domain.common.getDateMonthYear
 import com.homanad.android.t1.R
 import com.homanad.android.t1.databinding.FragmentStatisticBinding
+import com.homanad.android.t1.ui.common.MonthYearPickerDialog
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class StatisticFragment : BaseFragment() {
@@ -54,12 +55,20 @@ class StatisticFragment : BaseFragment() {
                                 picker.addOnPositiveButtonClickListener {
                                     selectTime.text = it.getDateMonthYear(dd_space_MMM_space_yyyy)
                                 }
-                                picker.show(childFragmentManager, "")
+                                picker.show(childFragmentManager, "MaterialDatePicker")
                             }
                         }
                     }
                     R.id.select_month -> {
-                        selectTime.visible()
+                        selectTime.run {
+                            visible()
+                            setOnClickListener {
+                                val picker = getMonthYearPicker { view, year, month, dayOfMonth ->
+
+                                }
+                                picker.show(parentFragmentManager, "MonthYearPickerDialog")
+                            }
+                        }
                     }
                     R.id.select_period -> {
                         selectTime.visible()
@@ -74,6 +83,14 @@ class StatisticFragment : BaseFragment() {
             .setTitleText("Select date")
             .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
             .build()
+    }
+
+    private fun getMonthYearPicker(
+        listener: (view: View?, year: Int, month: Int, dayOfMonth: Int) -> Unit
+    ): MonthYearPickerDialog {
+        return MonthYearPickerDialog(Date(System.currentTimeMillis())).apply {
+            setListener(listener)
+        }
     }
 
     companion object {
