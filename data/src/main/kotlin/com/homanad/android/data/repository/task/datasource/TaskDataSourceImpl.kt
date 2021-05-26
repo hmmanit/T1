@@ -1,8 +1,8 @@
 package com.homanad.android.data.repository.task.datasource
 
 import android.util.Log
-import com.homanad.android.data.common.getEndOfToday
-import com.homanad.android.data.common.getStartOfToday
+import com.homanad.android.domain.common.getEndOfToday
+import com.homanad.android.domain.common.getStartOfToday
 import com.homanad.android.data.db.dao.TaskDAO
 import com.homanad.android.data.mapper.toTask
 import com.homanad.android.data.mapper.toTaskEntity

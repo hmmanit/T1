@@ -3,7 +3,9 @@ package com.homanad.android.t1.ui.feature.calendar.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.homanad.android.t1.common.*
+import com.homanad.android.domain.common.addNumberOfNextDays
+import com.homanad.android.domain.common.addNumberOfPreviousDays
+import com.homanad.android.domain.common.generateFromToday
 import com.homanad.android.t1.ui.feature.calendar.page.CalendarPageFragment
 
 class CalendarPageAdapter(

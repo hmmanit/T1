@@ -20,9 +20,10 @@ import com.google.android.material.transition.MaterialContainerTransform
 import com.homanad.android.common.components.recyclerView.decoration.SpaceItemDecoration
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.common.extensions.context.themeColor
+import com.homanad.android.domain.common.*
 import com.homanad.android.domain.entity.Task
 import com.homanad.android.t1.R
-import com.homanad.android.t1.common.*
+import com.homanad.android.t1.common.BASE_SPACE_ITEM_DECORATION
 import com.homanad.android.t1.databinding.FragmentCreateOrEditTaskBinding
 import com.homanad.android.t1.ui.common.ColorAdapter
 import com.homanad.android.t1.ui.feature.home.page.adapter.HomeBoardAdapter

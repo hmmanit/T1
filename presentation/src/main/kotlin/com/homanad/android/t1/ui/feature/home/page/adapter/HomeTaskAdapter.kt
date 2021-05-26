@@ -8,9 +8,9 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.homanad.android.common.components.recyclerView.util.DiffCallback
+import com.homanad.android.domain.common.toDateTimeWithNewLine
 import com.homanad.android.domain.entity.datamodel.TaskInBoard
 import com.homanad.android.t1.R
-import com.homanad.android.t1.common.toDateTimeWithNewLine
 
 class HomeTaskAdapter : RecyclerView.Adapter<HomeTaskAdapter.ItemHolder>() {
 

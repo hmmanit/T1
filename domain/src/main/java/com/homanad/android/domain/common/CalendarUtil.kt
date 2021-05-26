@@ -1,7 +1,5 @@
-package com.homanad.android.t1.common
+package com.homanad.android.domain.common
 
-import android.util.Log
-import com.homanad.android.t1.model.DayModel
 import java.util.*
 
 const val ONE_DAY_IN_MILLIS = 86400000
@@ -22,9 +20,6 @@ fun generateFromToday(): MutableList<Long> {
 //    }
     days.addPreviousTenDays(today)
     days.addNextTenDays(today)
-    days.forEach {
-        Log.d("dayyyyyyyy:\n", getDateString(it))
-    }
     return days
 }
 
@@ -121,19 +116,37 @@ fun Long.toDateTimeWithNewLine(): String {
     return datetime
 }
 
-fun Long.toDayModel(): DayModel {
+fun Long.getStartOfToday(): Long {
     val calendar: Calendar = GregorianCalendar()
     calendar.timeInMillis = this
-    var dayOfMonth = ""
-    dayOfMonth += calendar.get(Calendar.DATE)
-    dayOfMonth += "/" + (calendar.get(Calendar.MONTH) + 1)
-
-    val dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK).getDay()
-
-    return DayModel(dayOfWeek, dayOfMonth)
+    calendar.set(Calendar.HOUR_OF_DAY, 0)
+    calendar.set(Calendar.MINUTE, 0)
+    calendar.set(Calendar.SECOND, 0)
+    calendar.set(Calendar.MILLISECOND, 0)
+    return calendar.timeInMillis
 }
 
-fun Int.getDay(): String {
+fun Long.getEndOfToday(): Long {
+    val calendar: Calendar = GregorianCalendar()
+    calendar.timeInMillis = this
+    calendar.set(Calendar.HOUR_OF_DAY, 23)
+    calendar.set(Calendar.MINUTE, 59)
+    calendar.set(Calendar.SECOND, 59)
+    calendar.set(Calendar.MILLISECOND, 999)
+    return calendar.timeInMillis
+}
+
+fun Calendar.setDateTime(time: Long, hour: Int, minute: Int) {
+    timeInMillis = time
+    setTime(hour, minute)
+}
+
+fun Calendar.setTime(hour: Int, minute: Int) {
+    set(Calendar.HOUR_OF_DAY, hour)
+    set(Calendar.MINUTE, minute)
+}
+
+fun Int.getDayOfWeek(): String {
     return when (this) {
         Calendar.SUNDAY -> "Sun"
         Calendar.MONDAY -> "Mon"
@@ -148,34 +161,17 @@ fun Int.getDay(): String {
     }
 }
 
-fun Long.getStartOfToday(): Long {
+fun Long.getDateOfMonth(): String {
     val calendar: Calendar = GregorianCalendar()
     calendar.timeInMillis = this
-    calendar.set(Calendar.HOUR_OF_DAY, 0)
-    calendar.set(Calendar.MINUTE, 0)
-    calendar.set(Calendar.SECOND, 0)
-    calendar.set(Calendar.MILLISECOND, 0)
-    Log.d("aaaaaaaaaaaaaa", calendar.timeInMillis.toString())
-    return calendar.timeInMillis
+    var dayOfMonth = ""
+    dayOfMonth += calendar.get(Calendar.DATE)
+    dayOfMonth += "/" + (calendar.get(Calendar.MONTH) + 1)
+    return dayOfMonth
 }
 
-fun Long.getEndOfToday(): Long {
+fun Long.getDateOfWeek(): String {
     val calendar: Calendar = GregorianCalendar()
     calendar.timeInMillis = this
-    calendar.set(Calendar.HOUR_OF_DAY, 23)
-    calendar.set(Calendar.MINUTE, 59)
-    calendar.set(Calendar.SECOND, 59)
-    calendar.set(Calendar.MILLISECOND, 999)
-    Log.d("aaaaaaaaaaaaaa", calendar.timeInMillis.toString())
-    return calendar.timeInMillis
-}
-
-fun Calendar.setDateTime(time: Long, hour: Int, minute: Int) {
-    timeInMillis = time
-    setTime(hour, minute)
-}
-
-fun Calendar.setTime(hour: Int, minute: Int) {
-    set(Calendar.HOUR_OF_DAY, hour)
-    set(Calendar.MINUTE, minute)
+    return calendar.get(Calendar.DAY_OF_WEEK).getDayOfWeek()
 }

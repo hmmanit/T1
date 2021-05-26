@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textview.MaterialTextView
 import com.homanad.android.common.components.recyclerView.util.DiffCallback
+import com.homanad.android.domain.common.toDateTimeWithNewLine
 import com.homanad.android.domain.entity.datamodel.TaskInBoard
 import com.homanad.android.t1.R
 import com.homanad.android.t1.common.getPriorityByPoint
 import com.homanad.android.t1.common.getStatusByStatus
-import com.homanad.android.t1.common.toDateTimeWithNewLine
 
 class TaskAdapter : RecyclerView.Adapter<TaskAdapter.ItemHolder>() {
 

@@ -9,8 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.homanad.android.common.components.ui.BaseFragment
+import com.homanad.android.domain.common.getDateOfMonth
+import com.homanad.android.domain.common.getDateOfWeek
 import com.homanad.android.t1.R
-import com.homanad.android.t1.common.toDayModel
 import com.homanad.android.t1.databinding.FragmentCalendarBinding
 import com.homanad.android.t1.ui.feature.calendar.adapter.CalendarPageAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,8 +68,8 @@ class CalendarFragment : BaseFragment() {
                 setCurrentItem(calendarPageAdapter.itemCount / 2, true)
             }
             TabLayoutMediator(tabDay, pageDay) { tab, position ->
-                val dayModel = calendarPageAdapter.days[position].toDayModel()
-                tab.text = dayModel.dayOfWeek + "\n" + dayModel.dayOfMonth
+                val dayMillis = calendarPageAdapter.days[position]
+                tab.text = dayMillis.getDateOfWeek() + "\n" + dayMillis.getDateOfMonth()
             }.attach()
         }
     }
