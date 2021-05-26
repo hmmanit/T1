@@ -155,9 +155,25 @@ fun Int.getDayOfWeek(): String {
         Calendar.THURSDAY -> "Thu"
         Calendar.FRIDAY -> "Fri"
         Calendar.SATURDAY -> "Sat"
-        else -> {
-            return ""
-        }
+        else -> ""
+    }
+}
+
+fun Int.getMonthOfYear(): String {
+    return when (this) {
+        Calendar.JANUARY -> "Jan"
+        Calendar.FEBRUARY -> "Feb"
+        Calendar.MARCH -> "Mar"
+        Calendar.APRIL -> "April"
+        Calendar.MAY -> "May"
+        Calendar.JUNE -> "Jun"
+        Calendar.JULY -> "Jul"
+        Calendar.AUGUST -> "Aug"
+        Calendar.SEPTEMBER -> "Sep"
+        Calendar.OCTOBER -> "Oct"
+        Calendar.NOVEMBER -> "Nov"
+        Calendar.DECEMBER -> "Dec"
+        else -> ""
     }
 }
 
@@ -170,8 +186,19 @@ fun Long.getDateOfMonth(): String {
     return dayOfMonth
 }
 
-fun Long.getDateOfWeek(): String {
+fun Long.getDayOfWeek(): String {
     val calendar: Calendar = GregorianCalendar()
     calendar.timeInMillis = this
     return calendar.get(Calendar.DAY_OF_WEEK).getDayOfWeek()
+}
+
+fun Long.getDateMonthYear(): String {
+    val calendar: Calendar = GregorianCalendar()
+    calendar.timeInMillis = this
+    var dateMonthYear = ""
+    dateMonthYear += calendar.get(Calendar.DATE)
+    dateMonthYear += " " + calendar.get(Calendar.MONTH).getMonthOfYear()
+    dateMonthYear += " " + calendar.get(Calendar.YEAR)
+
+    return dateMonthYear
 }

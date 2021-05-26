@@ -1,13 +1,16 @@
 package com.homanad.android.t1.ui.feature.statistic
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.common.extensions.view.gone
 import com.homanad.android.common.extensions.view.visible
+import com.homanad.android.domain.common.getDateMonthYear
 import com.homanad.android.t1.R
 import com.homanad.android.t1.databinding.FragmentStatisticBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +45,16 @@ class StatisticFragment : BaseFragment() {
                         selectTime.gone()
                     }
                     R.id.select_date -> {
-                        selectTime.visible()
+                        selectTime.run {
+                            visible()
+                            setOnClickListener {
+                                val picker = getDatePicker()
+                                picker.addOnPositiveButtonClickListener {
+                                    selectTime.text = it.getDateMonthYear()
+                                }
+                                picker.show(childFragmentManager, "")
+                            }
+                        }
                     }
                     R.id.select_month -> {
                         selectTime.visible()
@@ -53,6 +65,13 @@ class StatisticFragment : BaseFragment() {
                 }
             }
         }
+    }
+
+    private fun getDatePicker(): MaterialDatePicker<Long> {
+        return MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Select date")
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .build()
     }
 
     companion object {
