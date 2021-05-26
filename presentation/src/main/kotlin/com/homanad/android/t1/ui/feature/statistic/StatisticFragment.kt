@@ -10,6 +10,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.homanad.android.common.components.ui.BaseFragment
 import com.homanad.android.common.extensions.view.gone
 import com.homanad.android.common.extensions.view.visible
+import com.homanad.android.domain.common.dd_space_MMM_space_yyyy
 import com.homanad.android.domain.common.getDateMonthYear
 import com.homanad.android.t1.R
 import com.homanad.android.t1.databinding.FragmentStatisticBinding
@@ -47,10 +48,11 @@ class StatisticFragment : BaseFragment() {
                     R.id.select_date -> {
                         selectTime.run {
                             visible()
+                            selectTime.text = System.currentTimeMillis().getDateMonthYear(dd_space_MMM_space_yyyy)
                             setOnClickListener {
                                 val picker = getDatePicker()
                                 picker.addOnPositiveButtonClickListener {
-                                    selectTime.text = it.getDateMonthYear()
+                                    selectTime.text = it.getDateMonthYear(dd_space_MMM_space_yyyy)
                                 }
                                 picker.show(childFragmentManager, "")
                             }

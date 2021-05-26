@@ -1,10 +1,26 @@
 package com.homanad.android.domain.common
 
+import java.text.SimpleDateFormat
 import java.util.*
 
 const val ONE_DAY_IN_MILLIS = 86400000
 const val START_TIME_OF_THE_DAY = "00:00"
 const val END_TIME_OF_THE_DAY = "23:59"
+
+const val yyyy_MM_dd = "yyyy-MM-dd"   // 2018-07-14
+const val dd_MMM_yyyy = "dd-MMM-yyyy"   // 14-Jul-2018
+const val dd_separate_MM_separate_yyyy = "dd/MM/yyyy"   // 14/07/2018
+const val MMM_space_dd_space_yyyy = "MMM dd yyyy"   // Jul 14 2018
+const val dd_space_MMM_space_yyyy = "dd MMM yyyy"   // 14 Jul 2018
+const val E_comma_MMM_space_dd_space_yyyy = "E, MMM dd yyyy"   // Sat, Jul 14 2018
+const val h_colon_mm_space_a = "h:mm a"   // 12:08 PM
+const val EEEE_coma_MMM_space_dd_comma_yyyy_space_HH_colon_mm_colon_ss_space_a =
+    "EEEE, MMM dd, yyyy HH:mm:ss a"   // 	Saturday, Jul 14, 2018 14:31:06 PM
+const val yyyy_MM_dd_apostrophe_T_apostrophe_HH_colon_mm_colon_ssZ =
+    "yyyy-MM-dd'T'HH:mm:ssZ"   // 2018-07-14T14:31:30+0530
+const val hh_space_apostrophe_o_2apostrophe_clock_apostrophe_space_a_comma_space_zzzz =
+    "hh 'o''clock' a, zzzz"   // “12 o’clock PM, Pacific Daylight Time”
+const val K_colon_mm_space_a_comma_space_z = "K:mm a, z"   // 	0:08 PM, PDT
 
 fun generateFromToday(): MutableList<Long> {
     val today = System.currentTimeMillis()
@@ -201,4 +217,9 @@ fun Long.getDateMonthYear(): String {
     dateMonthYear += " " + calendar.get(Calendar.YEAR)
 
     return dateMonthYear
+}
+
+fun Long.getDateMonthYear(pattern: String): String {
+    val formatter = SimpleDateFormat(pattern, Locale.getDefault())
+    return formatter.format(Date(this))
 }
