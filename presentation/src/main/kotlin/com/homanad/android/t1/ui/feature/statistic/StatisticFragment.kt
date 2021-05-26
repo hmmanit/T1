@@ -4,25 +4,58 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.databinding.DataBindingUtil
+import com.homanad.android.common.components.ui.BaseFragment
+import com.homanad.android.common.extensions.view.gone
+import com.homanad.android.common.extensions.view.visible
 import com.homanad.android.t1.R
+import com.homanad.android.t1.databinding.FragmentStatisticBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class StatisticFragment : Fragment() {
+@AndroidEntryPoint
+class StatisticFragment : BaseFragment() {
+
+    private lateinit var binding: FragmentStatisticBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistic, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_statistic, container, false)
+        return binding.root
+    }
+
+    override fun observeData() {
+
+    }
+
+    override fun setupViewModel() {
+
+    }
+
+    override fun updateUI() {
+        with(binding) {
+            toggleType.addOnButtonCheckedListener { group, checkedId, isChecked ->
+                when (checkedId) {
+                    R.id.select_board -> {
+                        selectTime.gone()
+                    }
+                    R.id.select_date -> {
+                        selectTime.visible()
+                    }
+                    R.id.select_month -> {
+                        selectTime.visible()
+                    }
+                    R.id.select_period -> {
+                        selectTime.visible()
+                    }
+                }
+            }
+        }
     }
 
     companion object {
-
         @JvmStatic
         fun newInstance() = StatisticFragment()
     }
