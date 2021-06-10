@@ -7,6 +7,7 @@ const val ONE_DAY_IN_MILLIS = 86400000
 const val START_TIME_OF_THE_DAY = "00:00"
 const val END_TIME_OF_THE_DAY = "23:59"
 
+const val E = "E" // Wed
 const val yyyy_MM_dd = "yyyy-MM-dd"   // 2018-07-14
 const val dd_MMM_yyyy = "dd-MMM-yyyy"   // 14-Jul-2018
 const val dd_separate_MM_separate_yyyy = "dd/MM/yyyy"   // 14/07/2018
@@ -163,36 +164,36 @@ fun Calendar.setTime(hour: Int, minute: Int) {
     set(Calendar.MINUTE, minute)
 }
 
-fun Int.getDayOfWeek(): String {
-    return when (this) {
-        Calendar.SUNDAY -> "Sun"
-        Calendar.MONDAY -> "Mon"
-        Calendar.TUESDAY -> "Tue"
-        Calendar.WEDNESDAY -> "Wed"
-        Calendar.THURSDAY -> "Thu"
-        Calendar.FRIDAY -> "Fri"
-        Calendar.SATURDAY -> "Sat"
-        else -> ""
-    }
-}
+//fun Int.getDayOfWeek(): String {
+//    return when (this) {
+//        Calendar.SUNDAY -> "Sun"
+//        Calendar.MONDAY -> "Mon"
+//        Calendar.TUESDAY -> "Tue"
+//        Calendar.WEDNESDAY -> "Wed"
+//        Calendar.THURSDAY -> "Thu"
+//        Calendar.FRIDAY -> "Fri"
+//        Calendar.SATURDAY -> "Sat"
+//        else -> ""
+//    }
+//}
 
-fun Int.getMonthOfYear(): String {
-    return when (this) {
-        Calendar.JANUARY -> "Jan"
-        Calendar.FEBRUARY -> "Feb"
-        Calendar.MARCH -> "Mar"
-        Calendar.APRIL -> "April"
-        Calendar.MAY -> "May"
-        Calendar.JUNE -> "Jun"
-        Calendar.JULY -> "Jul"
-        Calendar.AUGUST -> "Aug"
-        Calendar.SEPTEMBER -> "Sep"
-        Calendar.OCTOBER -> "Oct"
-        Calendar.NOVEMBER -> "Nov"
-        Calendar.DECEMBER -> "Dec"
-        else -> ""
-    }
-}
+//fun Int.getMonthOfYear(): String {
+//    return when (this) {
+//        Calendar.JANUARY -> "Jan"
+//        Calendar.FEBRUARY -> "Feb"
+//        Calendar.MARCH -> "Mar"
+//        Calendar.APRIL -> "April"
+//        Calendar.MAY -> "May"
+//        Calendar.JUNE -> "Jun"
+//        Calendar.JULY -> "Jul"
+//        Calendar.AUGUST -> "Aug"
+//        Calendar.SEPTEMBER -> "Sep"
+//        Calendar.OCTOBER -> "Oct"
+//        Calendar.NOVEMBER -> "Nov"
+//        Calendar.DECEMBER -> "Dec"
+//        else -> ""
+//    }
+//}
 
 fun Long.getDateOfMonth(): String {
     val calendar: Calendar = GregorianCalendar()
@@ -204,21 +205,24 @@ fun Long.getDateOfMonth(): String {
 }
 
 fun Long.getDayOfWeek(): String {
-    val calendar: Calendar = GregorianCalendar()
-    calendar.timeInMillis = this
-    return calendar.get(Calendar.DAY_OF_WEEK).getDayOfWeek()
+//    val calendar: Calendar = GregorianCalendar()
+//    calendar.timeInMillis = this
+//    return calendar.get(Calendar.DAY_OF_WEEK).getDayOfWeek()
+    val formatter = SimpleDateFormat(E, Locale.getDefault())
+    return formatter.format(Date(this))
+//    return calendar.get(Calendar.DAY_OF_WEEK).getDayOfWeek()
 }
 
-fun Long.getDateTime(): String {
-    val calendar: Calendar = GregorianCalendar()
-    calendar.timeInMillis = this
-    var dateMonthYear = ""
-    dateMonthYear += calendar.get(Calendar.DATE)
-    dateMonthYear += " " + calendar.get(Calendar.MONTH).getMonthOfYear()
-    dateMonthYear += " " + calendar.get(Calendar.YEAR)
-
-    return dateMonthYear
-}
+//fun Long.getDateTime(): String {
+//    val calendar: Calendar = GregorianCalendar()
+//    calendar.timeInMillis = this
+//    var dateMonthYear = ""
+//    dateMonthYear += calendar.get(Calendar.DATE)
+//    dateMonthYear += " " + calendar.get(Calendar.MONTH).getMonthOfYear()
+//    dateMonthYear += " " + calendar.get(Calendar.YEAR)
+//
+//    return dateMonthYear
+//}
 
 fun Long.getDateTime(pattern: String): String {
     val formatter = SimpleDateFormat(pattern, Locale.getDefault())
